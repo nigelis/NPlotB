@@ -58,7 +58,6 @@ namespace NPlot
 		/// <param name="yAxis">The Y-Axis to draw against.</param>
 		public virtual void Draw( Graphics g, PhysicalAxis xAxis, PhysicalAxis yAxis )
 		{
-
 			SequenceAdapter data = 
 				new SequenceAdapter( this.DataSource, this.DataMember, this.OrdinateData, this.AbscissaData );
 
@@ -87,7 +86,19 @@ namespace NPlot
 				}
 				else
 				{
-					p2 = data[i-1];
+                    // Check that we are not dealing with a DataSource of 1 point.
+                    // This check is done here so it is only checked on the end
+                    // condition and not for every point in the DataSource.
+                    if (data.Count > 1)
+                    {
+                        p2 = data[i - 1];
+                    }
+                    else
+                    {
+                        // TODO: Once log4net is set up post a message to the user that a step-plot of 1 really does not make any sense.
+                        p2 = p1;
+                    }
+
 					double offset = p1.X - p2.X;
 					p2.X = p1.X + offset;
 					p2.Y = p1.Y;
