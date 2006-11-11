@@ -844,7 +844,7 @@ namespace NPlot
 				(float)(prop * (_physicalMax.X - _physicalMin.X)),
 				(float)(prop * (_physicalMax.Y - _physicalMin.Y)) );
 
-			return new PointF( (int)(_physicalMin.X + offset.X), (int)(_physicalMin.Y + offset.Y) );
+			return new PointF( (_physicalMin.X + offset.X), (_physicalMin.Y + offset.Y) );
 		}
 
 
