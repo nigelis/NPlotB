@@ -268,7 +268,17 @@ namespace NPlot
 		/// <returns>A suitable x-axis.</returns>
 		public Axis SuggestXAxis()
 		{
-			return this.XAxisSuggester_.Get();
+            Axis a = this.XAxisSuggester_.Get();
+
+            // The world length should never be returned as 0
+            // This would result in an axis with a span of 0 units
+            // which can not be properly displayed.
+            if (a.WorldLength == 0.0)
+            {
+                // TODO make 0.08 a parameter.
+                a.IncreaseRange(0.08);
+            }
+            return a;
 		}
 
 
