@@ -213,9 +213,17 @@ namespace NPlot
 			/// <returns>the suggested axis</returns>
             public Axis Get()
             {
-                return new LinearAxis(
-                    abscissaData_.Start,
-                    abscissaData_.Start + (double)(ordinateData_.Count - 1) * abscissaData_.Step);
+                if (ordinateData_!=null && ordinateData_.Count>0)
+                {
+                    return new LinearAxis(
+                        abscissaData_.Start,
+                        abscissaData_.Start + (double)(ordinateData_.Count - 1) * abscissaData_.Step);
+                }
+
+                else
+                {
+                    return new LinearAxis(0.0, 1.0);
+                }
             }
         }
 
@@ -243,7 +251,16 @@ namespace NPlot
 			/// <returns>the suggested axis</returns>
             public Axis Get()
             {
-                return new LinearAxis(0, ordinateData_.Count - 1);
+                if (ordinateData_!=null && ordinateData_.Count>0)
+                {
+                    return new LinearAxis(0, ordinateData_.Count - 1);
+
+                }
+
+                else
+                {
+                    return new LinearAxis(0.0, 1.0);
+                }
             }
         }
 
@@ -270,7 +287,15 @@ namespace NPlot
 			/// <returns>the suggested axis</returns>
             public Axis Get()
             {
-                return new LinearAxis(0, ordinateData_.Count - 1);
+                if (ordinateData_!=null && ordinateData_.Count>0)
+                {
+                	return new LinearAxis(0, ordinateData_.Count - 1);
+                }
+
+                else
+                {
+                	return new LinearAxis(0.0, 1.0);
+                }
             }
         }
 

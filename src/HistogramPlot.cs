@@ -243,6 +243,10 @@ namespace NPlot
 				new SequenceAdapter( this.DataSource, this.DataMember, this.OrdinateData, this.AbscissaData );
 
 			Axis a = data.SuggestXAxis();
+			if (data.Count==0)
+			{
+				return a;
+			}
 
 			PointD p1;
 			PointD p2;
