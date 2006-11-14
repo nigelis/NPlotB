@@ -1,3 +1,14 @@
+0.9.10.0 14 Nov 2006
+  Release manager: anmar
+
+Codebase license changed to a 3-clause-BSD license (as approved by Matt Howlett). Read license.txt
+  or the header of any source file for full text).
+Folder layout reorganization.
+Dropped VS 2003 project files and added VS 2005, MonoDevelop, NAnt and Makefile.
+Added NPlot C++.Net demo application. 
+Fixed bugs [SF bug 1594731], [SF bug 1594664], [SF bug 1590992], [SF bug 1584460] and [SF bug 1469760]
+
+
 0.9.9.2 28 Feb 2006
 
 Fixed bug in DateTimeAxis.WorldTickPositions_FirstPass reported by Pawel Konieczny.
@@ -292,4 +303,5 @@ Added patches by Alexander Kucheravy relating to angled tick labels and large ti
 0.9.7 [4 November 2004]
 
 change log started.
+
 
