@@ -192,7 +192,28 @@ namespace NPlot
 				}
 			}
 
-
+#if API_1_1
+			/// <summary>
+			/// It has been renamed to <see cref="SurfacePadding" /> and can be used with .NET 1.1 only.
+			/// </summary>
+			[
+			Browsable(true),
+			Category("Data"),
+			Bindable(true),
+			Obsolete("This property is only maintained in .NET 1.1 profile for compatibility, but it might be removed in the future. Use SurfacePadding instead")
+			]
+			public int Padding
+			{
+				get
+				{
+					return SurfacePadding;
+				}
+				set
+				{
+					SurfacePadding = value;
+				}
+			}
+#endif
 			/// <summary>
 			/// The distance in pixels to leave between of the edge of the bounding rectangle
 			/// supplied to the Draw method, and the markings that make up the plot.
@@ -202,15 +223,15 @@ namespace NPlot
 			Category("Data"),
 			Bindable(true)
 			]
-			public int Padding
+			public int SurfacePadding
 			{
 				get
 				{
-					return ps_.Padding;
+					return ps_.SurfacePadding;
 				}
 				set
 				{
-					ps_.Padding = value;
+					ps_.SurfacePadding = value;
 				}
 			}
 

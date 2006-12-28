@@ -434,7 +434,29 @@ namespace NPlot.Windows
 			}
 		}
 
-
+#if API_1_1
+		/// <summary>
+		/// It has been renamed to <see cref="SurfacePadding" /> and can be used with .NET 1.1 only.
+		/// </summary>
+		[
+		Category("PlotSurface2D"),
+		Description("See SurfacePadding."),
+		Browsable(true),
+		Bindable(true),
+		Obsolete("This property is only maintained in .NET 1.1 profile for compatibility, but it might be removed in the future. Use SurfacePadding instead")
+		]
+		public int Padding
+		{
+			get
+			{
+				return SurfacePadding;
+			}
+			set
+			{
+				SurfacePadding = value;
+			}
+		}
+#endif
 		/// <summary>
 		/// Padding of this width will be left between what is drawn and the control border.
 		/// </summary>
@@ -444,18 +466,17 @@ namespace NPlot.Windows
 		Browsable(true),
 		Bindable(true)
 		]
-		public int Padding
+		public int SurfacePadding
 		{
 			get
 			{
-				return ps_.Padding;
+				return ps_.SurfacePadding;
 			}
 			set
 			{
-				ps_.Padding = value;
+				ps_.SurfacePadding = value;
 			}
 		}
-
 
 		/// <summary>
 		/// The first abscissa axis.

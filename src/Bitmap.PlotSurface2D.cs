@@ -168,21 +168,38 @@ namespace NPlot
 					ps_.TitleFont = value;
 				}
 			}
-
-
+#if API_1_1
 			/// <summary>
-			/// The distance in pixels to leave between of the edge of the bounding rectangle
-			/// supplied to the Draw method, and the markings that make up the plot.
+			/// It has been renamed to <see cref="SurfacePadding" /> and can be used with .NET 1.1 only.
 			/// </summary>
+			[
+			Obsolete("This property is only maintained in .NET 1.1 profile for compatibility, but it might be removed in the future. Use SurfacePadding instead")
+			]
 			public int Padding
 			{
 				get
 				{
-					return ps_.Padding;
+					return SurfacePadding;
 				}
 				set
 				{
-					ps_.Padding = value;
+					SurfacePadding = value;
+				}
+			}
+#endif
+			/// <summary>
+			/// The distance in pixels to leave between of the edge of the bounding rectangle
+			/// supplied to the Draw method, and the markings that make up the plot.
+			/// </summary>
+			public int SurfacePadding
+			{
+				get
+				{
+					return ps_.SurfacePadding;
+				}
+				set
+				{
+					ps_.SurfacePadding = value;
 				}
 			}
 
