@@ -41,7 +41,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCopyright("Copyright (C) 2003-2006 Matt Howlett and others")]
 [assembly: AssemblyTrademark("This program is under The BSD license")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("0.9.10.0")]
+[assembly: AssemblyVersion("0.9.10.1")]
 [assembly: CLSCompliant(true)]
 [assembly: AssemblyKeyFile(@"NPlot-key.snk")]
 
