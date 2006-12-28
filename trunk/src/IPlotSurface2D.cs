@@ -102,7 +102,7 @@ namespace NPlot
 		/// The distance in pixels to leave between of the edge of the bounding rectangle
 		/// supplied to the Draw method, and the markings that make up the plot.
 		/// </summary>
-		int Padding { get; set; }
+		int SurfacePadding { get; set; }
 		
 
 		/// <summary>
