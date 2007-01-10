@@ -136,7 +136,7 @@ namespace NPlotDemo
             costPS.YAxis1.LabelOffset = 40;
             costPS.YAxis1.LabelOffsetAbsolute = true;
             costPS.XAxis1.HideTickText = true;
-            costPS.Padding = 5;
+            costPS.SurfacePadding = 5;
             costPS.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.HorizontalDrag());
             costPS.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.VerticalDrag());
             costPS.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.AxisDrag(false));
@@ -149,12 +149,12 @@ namespace NPlotDemo
             pp.Marker.DropLine = true;
             pp.DataSource = dt;
             pp.AbscissaData = "Date";
-            pp.OrdinateData = "Volume";
+            pp.OrdinateData = "Volume";  
             volumePS.Add(pp);
             volumePS.YAxis1.Label = "Volume";
             volumePS.YAxis1.LabelOffsetAbsolute = true;
             volumePS.YAxis1.LabelOffset = 40;
-            volumePS.Padding = 5;
+            volumePS.SurfacePadding = 5;
             volumePS.AddAxesConstraint(new AxesConstraint.AxisPosition(PlotSurface2D.YAxisPosition.Left, 60));
             volumePS.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.AxisDrag(false));
             volumePS.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.HorizontalDrag());
