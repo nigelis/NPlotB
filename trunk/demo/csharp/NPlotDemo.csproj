@@ -115,5 +115,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" Condition="'$(SharpDevelopBinPath)'==''" />
+  <Import Project="$(MSBuildExtensionsPath)\MSBee\MSBuildExtras.FX1_1.CSharp.targets" Condition="'$(SharpDevelopBinPath)'=='' AND '$(TargetFrameworkVersion)'=='v1.1' and Exists('$(MSBuildExtensionsPath)\MSBee\MSBuildExtras.FX1_1.CSharp.targets')" />
   <Import Project="$(SharpDevelopBinPath)\SharpDevelop.Build.CSharp.targets" Condition="'$(SharpDevelopBinPath)'!=''" />
 </Project>
