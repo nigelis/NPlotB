@@ -1360,8 +1360,24 @@ namespace NPlot.Windows
                         maxPoint.X = Math.Max(startPoint_.X, endPoint_.X);
                         maxPoint.Y = Math.Max(startPoint_.Y, endPoint_.Y);
 
+                        // We also need the point coordinates at the other two corners
+                        // to check if the rubberband selection is inbounds 
+                        //(i.e. at least one corner is located inside the chart
+                        Point cornerUpperRight = new Point(0, 0);
+                        cornerUpperRight.X = Math.Max(startPoint_.X, endPoint_.X);
+                        cornerUpperRight.Y = Math.Min(startPoint_.Y, endPoint_.Y);
+
+                        Point cornerLowerLeft = new Point(0, 0);
+                        cornerLowerLeft.X = Math.Min(startPoint_.X, endPoint_.X);
+                        cornerLowerLeft.Y = Math.Max(startPoint_.Y, endPoint_.Y);
+                          
                         Rectangle r = ps.PlotAreaBoundingBoxCache;
-                        if (minPoint != maxPoint && (r.Contains(minPoint) || r.Contains(maxPoint)))
+                        bool isRubberbandInbounds = r.Contains(minPoint) ||
+                                                    r.Contains(maxPoint) ||
+                                                    r.Contains(cornerUpperRight) ||
+                                                    r.Contains(cornerLowerLeft);
+
+                        if (isRubberbandInbounds && minPoint != maxPoint)
                         {
                             ((Windows.PlotSurface2D)ctr).CacheAxes();
 
@@ -1378,7 +1394,7 @@ namespace NPlot.Windows
 
 							return true;
                         }
-					}
+					}  
 
 					return false;
                 }
