@@ -121,9 +121,8 @@ namespace NPlot
 				PointF yPos3 = yAxis.WorldToPhysical( p3.Y, false );
 
 				// do horizontal clipping here, to speed up
-				if ((p1.X < leftCutoff || p1.X > rightCutoff ) &&
-					(p2.X < leftCutoff || p2.X > rightCutoff ) && 
-					(p3.X < leftCutoff || p3.X > rightCutoff ) )
+                if ((p1.X < leftCutoff && p2.X < leftCutoff && p3.X < leftCutoff) ||
+                    (p1.X > rightCutoff && p2.X > rightCutoff && p3.X > rightCutoff))
 				{
 					continue;
 				}
@@ -150,7 +149,7 @@ namespace NPlot
 
 			}
 
-		}
+		}  
 
 
 		/// <summary>
