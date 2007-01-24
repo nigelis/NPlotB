@@ -48,6 +48,13 @@ namespace NPlot
 		/// <param name="rectangle">the rectangle used to construct the brush</param>
 		/// <returns>The brush</returns>
 		Brush Get( Rectangle rectangle );
+
+        /// <summary>
+        /// Gets a brush according to the supplied rectangle.
+        /// </summary>
+        /// <param name="rectangle">the rectangle used to construct the brush</param>
+        /// <returns>The brush</returns>
+        Brush Get(RectangleF rectangle);
 	}
 
 	/// <summary>
@@ -82,7 +89,12 @@ namespace NPlot
 				return brush_;
 			}
 
-			#region Default Brushes
+		    public Brush Get(RectangleF rectangle)
+		    {
+                return brush_;
+		    }
+
+		    #region Default Brushes
 			/// <summary>
 			/// AliceBlue solid brush.
 			/// </summary>
@@ -1668,7 +1680,12 @@ namespace NPlot
 				return new LinearGradientBrush( rectangle, c1_, c2_, LinearGradientMode.Horizontal );
 			}
 
-			#region DefaultBrushes
+		    public Brush Get(RectangleF rectangle)
+		    {
+                return new LinearGradientBrush(rectangle, c1_, c2_, LinearGradientMode.Horizontal);
+		    }
+
+		    #region DefaultBrushes
 
 			/// <summary>
 			/// Default brush - fades from faint blue to white.
@@ -1737,8 +1754,12 @@ namespace NPlot
 				return new LinearGradientBrush( rectangle, c1_, c2_, LinearGradientMode.Vertical );
 			}
 
+		    public Brush Get(RectangleF rectangle)
+		    {
+                return new LinearGradientBrush(rectangle, c1_, c2_, LinearGradientMode.Vertical);
+		    }
 
-			#region DefaultBrushes
+		    #region DefaultBrushes
 
 			/// <summary>
 			/// Default brush - fades from faint blue to white.
@@ -1813,7 +1834,19 @@ namespace NPlot
 				return brush;
 			}
 
-			#region DefaultBrushes
+		    public Brush Get(RectangleF rectangle)
+		    {
+                LinearGradientBrush brush = new LinearGradientBrush(rectangle, c1_, c2_, LinearGradientMode.Horizontal);
+                float[] relativeIntensities = { 0.0f, 0.9f, 1.0f, 0.9f, 0.0f };
+                float[] relativePositions = { 0.0f, 0.4f, 0.5f, 0.6f, 1.0f };
+                Blend blend = new Blend();
+                blend.Factors = relativeIntensities;
+                blend.Positions = relativePositions;
+                brush.Blend = blend;
+                return brush;
+		    }
+
+		    #region DefaultBrushes
 
 			/// <summary>
 			/// Default brush - fades from faint blue to white.
@@ -1889,7 +1922,19 @@ namespace NPlot
 				return brush;
 			}
 
-			#region DefaultBrushes
+		    public Brush Get(RectangleF rectangle)
+		    {
+                LinearGradientBrush brush = new LinearGradientBrush(rectangle, c1_, c2_, LinearGradientMode.Vertical);
+                float[] relativeIntensities = { 0.0f, 0.9f, 1.0f, 0.9f, 0.0f };
+                float[] relativePositions = { 0.0f, 0.4f, 0.5f, 0.6f, 1.0f };
+                Blend blend = new Blend();
+                blend.Factors = relativeIntensities;
+                blend.Positions = relativePositions;
+                brush.Blend = blend;
+                return brush;
+		    }
+
+		    #region DefaultBrushes
 
 			/// <summary>
 			/// Default brush - fades from faint blue to white.

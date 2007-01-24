@@ -174,8 +174,8 @@ namespace NPlot
 				}
 
 				float xoff = (1.0f - baseWidth_)/2.0f*width;
-				Rectangle r = new Rectangle( (int)(xPos1.X+xoff), (int)yPos1.Y, (int)(width-2*xoff), (int)height );
-
+				RectangleF r = new RectangleF( xPos1.X+xoff, yPos1.Y, width-2*xoff, height );
+                   
 				if (this.Filled)
 				{
 					if (r.Height != 0 && r.Width != 0)
