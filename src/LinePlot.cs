@@ -152,13 +152,13 @@ namespace NPlot
 					}
 
                     // do horizontal clipping here, to speed up
-                    if ((dx1 < leftCutoff || rightCutoff < dx1) &&
-                        (dx2 < leftCutoff || rightCutoff < dx2))
+                    if ((dx1 < leftCutoff && dx2 < leftCutoff) ||
+                        (rightCutoff < dx1 && rightCutoff < dx2))
                     {
                         continue;
                     }
 
-					// else draw line.
+					// else draw line.  
 					PointF p1 = t.Transform( data[i-1] );
 					PointF p2 = t.Transform( data[i] );
                     
