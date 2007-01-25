@@ -750,7 +750,6 @@ namespace NPlot.Windows
 			bool dirty = false;
             foreach (Interactions.Interaction i in interactions_)
             {
-                i.DoMouseDown(e,this);
 				dirty |= i.DoMouseDown(e,this);
             }
 			if (dirty)
@@ -782,7 +781,6 @@ namespace NPlot.Windows
 			bool dirty = false;
             foreach (Interactions.Interaction i in interactions_)
             {
-                i.DoMouseWheel(e, this);
 				dirty |= i.DoMouseWheel(e, this);
             }
 			if (dirty)
@@ -803,7 +801,6 @@ namespace NPlot.Windows
 			bool dirty = false;
             foreach (Interactions.Interaction i in interactions_)
             {
-                i.DoMouseMove(e, ctr, lastKeyEventArgs_);
 				dirty |= i.DoMouseMove(e, ctr, lastKeyEventArgs_);
             }
 			if (dirty)
@@ -2444,7 +2441,7 @@ namespace NPlot.Windows
 
 					((Windows.PlotSurface2D)ctr).CacheAxes();
 
-					float delta = (float)e.Delta / (float)e.Delta;
+					float delta = (float)e.Delta / (float)SystemInformation.MouseWheelScrollDelta;
 					delta *= sensitivity_;
 
 					Axis axis = null;
