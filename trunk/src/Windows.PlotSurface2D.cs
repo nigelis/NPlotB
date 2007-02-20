@@ -2441,9 +2441,12 @@ namespace NPlot.Windows
 
 					((Windows.PlotSurface2D)ctr).CacheAxes();
 
+#if API_1_1
+                    float delta = (float)e.Delta / (float)e.Delta;
+#else
 					float delta = (float)e.Delta / (float)SystemInformation.MouseWheelScrollDelta;
-					delta *= sensitivity_;
-
+#endif
+                    delta *= sensitivity_;
 					Axis axis = null;
 					PointF pMin = PointF.Empty;
 					PointF pMax = PointF.Empty;
