@@ -610,14 +610,13 @@ namespace NPlot
 
             for (int i = position; i < drawables_.Count; ++i)
             {
-
                 // only update axes if this drawable is an IPlot.
-                if (!(drawables_[position] is IPlot))
+                if (!(drawables_[i] is IPlot))
                     continue;
 
-                IPlot p = (IPlot)drawables_[position];
-                XAxisPosition xap = (XAxisPosition)xAxisPositions_[position];
-                YAxisPosition yap = (YAxisPosition)yAxisPositions_[position];
+                IPlot p = (IPlot)drawables_[i];
+                XAxisPosition xap = (XAxisPosition)xAxisPositions_[i];
+                YAxisPosition yap = (YAxisPosition)yAxisPositions_[i];
 
                 if (xap == XAxisPosition.Bottom)
                 {
