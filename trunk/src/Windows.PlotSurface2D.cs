@@ -62,6 +62,7 @@ namespace NPlot.Windows
 		private Axis xAxis2ZoomCache_;
 		private Axis yAxis2ZoomCache_;
 
+
         /// <summary>
 		/// Flag to display a coordinates in a tooltip.
 		/// </summary>
@@ -119,11 +120,9 @@ namespace NPlot.Windows
 			// 
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Size = new System.Drawing.Size(328, 272);
-
 		}
 
 
-        KeyEventArgs lastKeyEventArgs_ = null;
         /// <summary>
         /// the key down callback
         /// </summary>
@@ -132,6 +131,8 @@ namespace NPlot.Windows
         {
             lastKeyEventArgs_ = e;
         }
+        KeyEventArgs lastKeyEventArgs_ = null;
+
 
         /// <summary>
         /// The key up callback.
@@ -141,6 +142,7 @@ namespace NPlot.Windows
         {
             lastKeyEventArgs_ = e;
         }
+
 
         /// <summary>
 		/// the paint event callback.
@@ -206,7 +208,6 @@ namespace NPlot.Windows
 		/// surface to confine drawing to.</param>
 		public void Draw( Graphics g, Rectangle bounds )
 		{
-
 			// If we are not in design mode then draw as normal.
 			if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) 
 			{ 
@@ -214,7 +215,6 @@ namespace NPlot.Windows
 			}
 
 			ps_.Draw( g, bounds );
-		
 		}
 
 
@@ -477,6 +477,7 @@ namespace NPlot.Windows
 				ps_.SurfacePadding = value;
 			}
 		}
+
 
 		/// <summary>
 		/// The first abscissa axis.
@@ -819,10 +820,10 @@ namespace NPlot.Windows
 					coordinates_.ShowAlways = true;
 					
 					// according to Måns Erlandson, this can sometimes be the case.
-					if (this.PhysicalXAxis1Cache == null)
-						return;
-					if (this.PhysicalYAxis1Cache == null)
-						return;
+                    if ((this.PhysicalXAxis1Cache == null) || (this.PhysicalYAxis1Cache == null))
+                    {
+                        return;
+                    }
 
 					double x = this.PhysicalXAxis1Cache.PhysicalToWorld( here, true );
 					double y = this.PhysicalYAxis1Cache.PhysicalToWorld( here, true );
@@ -843,7 +844,6 @@ namespace NPlot.Windows
 					coordinates_.ShowAlways = false;
 				}
 			}
-
 		}
 
 
@@ -883,8 +883,10 @@ namespace NPlot.Windows
 			{
 				dirty = i.DoMouseLeave(e, this) || dirty;
 			}
-			if (dirty)
-				Refresh();
+            if (dirty)
+            {
+                Refresh();
+            }
 		}
 
 
@@ -937,9 +939,10 @@ namespace NPlot.Windows
                 Point here = new Point(e.X, e.Y);
                 selectedObjects_ = ps_.HitTest(here);
                 if (rightMenu_ != null)
+                {
                     rightMenu_.Menu.Show(ctr, here);
+                }
             }
-  
         }
 
 
@@ -974,6 +977,7 @@ namespace NPlot.Windows
 			this.Refresh();
 		}
 
+
         private void DrawHorizontalSelection(Point start, Point end, System.Windows.Forms.UserControl ctr)
         {
             // the clipping rectangle in screen coordinates
@@ -990,7 +994,6 @@ namespace NPlot.Windows
             ControlPaint.FillReversibleRectangle(
                 new Rectangle((int)Math.Min(start.X,end.X), (int)clip.Y, (int)Math.Abs(end.X-start.X), (int)clip.Height),
                 Color.White );
-
         }
 
 
@@ -1069,7 +1072,6 @@ namespace NPlot.Windows
 		/// </summary>
 		public void CopyDataToClipboard()
 		{
-
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
 			for (int i=0; i<ps_.Drawables.Count; ++i)
@@ -1091,7 +1093,6 @@ namespace NPlot.Windows
 			}
 
 			Clipboard.SetDataObject( sb.ToString(), true );
-
 		}
 
 
@@ -1304,7 +1305,6 @@ namespace NPlot.Windows
                 /// <param name="lastKeyEventArgs"></param>
                 public override bool DoMouseMove(MouseEventArgs e, Control ctr, KeyEventArgs lastKeyEventArgs)
                 {
-
                     if ((e.Button == MouseButtons.Left) && selectionInitiated_)
                     {
                         // we are here
@@ -1319,7 +1319,6 @@ namespace NPlot.Windows
 
                         // and redraw the last one
                         this.DrawRubberBand(startPoint_, endPoint_, ctr);
-
                     }
                    
 					return false;
@@ -1332,7 +1331,6 @@ namespace NPlot.Windows
                 /// <param name="ctr"></param>
                 public override bool DoMouseUp(MouseEventArgs e, Control ctr)
                 {
-
                     NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
 
                     // handle left button (selecting region).
@@ -1396,6 +1394,7 @@ namespace NPlot.Windows
 					return false;
                 }
 
+
                 /// <summary>
                 /// Draws a rectangle representing selection area. 
                 /// </summary>
@@ -1447,14 +1446,12 @@ namespace NPlot.Windows
                     ControlPaint.DrawReversibleFrame(
                         new Rectangle((int)rect.X, (int)rect.Y, (int)rect.Width, (int)rect.Height),
                         Color.White, FrameStyle.Dashed);
-
                 }
 
                 private Point startPoint_ = new Point(-1, -1);
                 private Point endPoint_ = new Point(-1, -1);
                 // this is the condition for an unset point
                 private Point unset_ = new Point(-1, -1);
-
             }
             #endregion
             #region HorizontalGuideline
@@ -1466,6 +1463,7 @@ namespace NPlot.Windows
                 private int barPos_;
                 private Color color_;
 
+
                 /// <summary>
                 /// Constructor
                 /// </summary>
@@ -1473,6 +1471,7 @@ namespace NPlot.Windows
                 {
                     color_ = Color.Black;
                 }
+
 
                 /// <summary>
                 /// Constructor
@@ -1482,6 +1481,7 @@ namespace NPlot.Windows
                 {
                     color_ = lineColor;
                 }
+
 
                 /// <summary>
                 /// 
@@ -1494,6 +1494,7 @@ namespace NPlot.Windows
                     barPos_ = -1;
                 }
 
+
                 /// <summary>
                 /// 
                 /// </summary>
@@ -1502,17 +1503,14 @@ namespace NPlot.Windows
                 /// <param name="lastKeyEventArgs"></param>
 				public override bool DoMouseMove(MouseEventArgs e, System.Windows.Forms.Control ctr, KeyEventArgs lastKeyEventArgs)
 				{
-
 					NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
 
 					// if mouse isn't in plot region, then don't draw horizontal line
 					if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < ps.PlotAreaBoundingBoxCache.Right &&
 						e.Y > ps.PlotAreaBoundingBoxCache.Top && e.Y < (ps.PlotAreaBoundingBoxCache.Bottom-1))
 					{
-
 						if (ps.PhysicalXAxis1Cache != null)
 						{
-
 							// the clipping rectangle in screen coordinates
 							Rectangle clip = ctr.RectangleToScreen(
 								new Rectangle(
@@ -1542,13 +1540,10 @@ namespace NPlot.Windows
 							{
 								barPos_ = -1;
 							}
-
 						}
-
 					}
 					else
 					{
-
 						if (barPos_ != -1)
 						{
 							Rectangle clip = ctr.RectangleToScreen(
@@ -1563,7 +1558,6 @@ namespace NPlot.Windows
 								new Point(clip.Right, barPos_), color_);
 							barPos_ = -1;
 						}
-
 					}
 
 					return false;
@@ -1597,7 +1591,6 @@ namespace NPlot.Windows
 					}
 					return false;
 				}
-
             }
             #endregion
             #region VerticalGuideline
@@ -1609,6 +1602,7 @@ namespace NPlot.Windows
                 private int barPos_;
                 private Color color_;
 
+
                 /// <summary>
                 /// 
                 /// </summary>
@@ -1616,6 +1610,7 @@ namespace NPlot.Windows
                 {
                     color_ = Color.Black;
                 }
+
 
                 /// <summary>
                 /// 
@@ -1625,6 +1620,7 @@ namespace NPlot.Windows
                 {
                     color_ = lineColor;
                 }
+
 
                 /// <summary>
                 /// 
@@ -1636,6 +1632,7 @@ namespace NPlot.Windows
                 {
                     barPos_ = -1;
                 }
+
 
                 /// <summary>
                 /// 
@@ -1682,14 +1679,10 @@ namespace NPlot.Windows
                             {
                                 barPos_ = -1;
                             }
-
                         }
-
                     }
                     else
                     {
-                        
-  
                         if (barPos_ != -1)
                         {
 
@@ -1707,7 +1700,6 @@ namespace NPlot.Windows
 
 							barPos_ = -1;
                         }
-
                     }
 
 					return false;
@@ -1737,9 +1729,9 @@ namespace NPlot.Windows
 							new Point(barPos_, clip.Bottom), color_);
 						barPos_ = -1;
 					}
+
 					return false;
 				}
-
             }
             #endregion
             #region HorizontalDrag
@@ -1748,7 +1740,6 @@ namespace NPlot.Windows
             /// </summary>
             public class HorizontalDrag : Interaction
             {
-
                 /// <summary>
                 /// 
                 /// </summary>
@@ -1769,6 +1760,7 @@ namespace NPlot.Windows
 
 					return false;
                 }
+
 
                 /// <summary>
                 /// 
@@ -1795,7 +1787,6 @@ namespace NPlot.Windows
 							PointF pMin = ps.PhysicalXAxis1Cache.PhysicalMin;
 							PointF pMax = ps.PhysicalXAxis1Cache.PhysicalMax;
 
-
                             PointF physicalWorldMin = pMin;
                             PointF physicalWorldMax = pMax;
 							physicalWorldMin.X -= diffX;
@@ -1805,6 +1796,7 @@ namespace NPlot.Windows
 							axis.WorldMin = newWorldMin;
 							axis.WorldMax = newWorldMax;
 						}
+
 						if (ps.XAxis2 != null)
 						{
 							Axis axis = ps.XAxis2;
@@ -1844,6 +1836,7 @@ namespace NPlot.Windows
                        lastPoint_ = unset_;
                        dragInitiated_ = false;
                     }
+
 					return false;
                 }
 
@@ -1913,6 +1906,7 @@ namespace NPlot.Windows
 							axis.WorldMin = newWorldMin;
 							axis.WorldMax = newWorldMax;
 						}
+
 						if (ps.YAxis2 != null)
 						{
 							Axis axis = ps.YAxis2;
@@ -2058,6 +2052,7 @@ namespace NPlot.Windows
                     selectionInitiated_ = false;
                     endPoint_ = unset_;
                     startPoint_ = unset_;
+
 					return false;
                 }
 
@@ -2110,8 +2105,15 @@ namespace NPlot.Windows
                     {
                         endPoint_.X = e.X;
                         endPoint_.Y = e.Y;
-                        if (e.X < ps.PlotAreaBoundingBoxCache.Left) endPoint_.X = ps.PlotAreaBoundingBoxCache.Left + 1;
-                        if (e.X > ps.PlotAreaBoundingBoxCache.Right) endPoint_.X = ps.PlotAreaBoundingBoxCache.Right - 1;
+                        if (e.X < ps.PlotAreaBoundingBoxCache.Left)
+                        {
+                            endPoint_.X = ps.PlotAreaBoundingBoxCache.Left + 1;
+                        }
+
+                        if (e.X > ps.PlotAreaBoundingBoxCache.Right)
+                        {
+                            endPoint_.X = ps.PlotAreaBoundingBoxCache.Right - 1;
+                        }
 
                         // flag stopped selecting.
                         selectionInitiated_ = false;
@@ -2164,7 +2166,6 @@ namespace NPlot.Windows
                         }
 
 						// now actually update the world limits.
-
 						if (ps.XAxis1 != null)
 						{
 							ps.XAxis1.WorldMax = xAxis1Max;
@@ -2204,9 +2205,7 @@ namespace NPlot.Windows
                     ControlPaint.FillReversibleRectangle(
                         new Rectangle((int)Math.Min(start.X, end.X), (int)clip.Y, (int)Math.Abs(end.X - start.X), (int)clip.Height),
                         Color.White);
-
                 }
-
             }
             #endregion
             #region AxisDrag
@@ -2226,7 +2225,6 @@ namespace NPlot.Windows
                 }
 
                 private bool enableDragWithCtr_ = false;
-
                 private Axis axis_ = null;
                 private bool doing_ = false;
                 private Point lastPoint_ = new Point();
@@ -2265,20 +2263,27 @@ namespace NPlot.Windows
                                 PhysicalAxis[] physicalAxisList = new PhysicalAxis[] { ps.PhysicalXAxis1Cache, ps.PhysicalXAxis2Cache, ps.PhysicalYAxis1Cache, ps.PhysicalYAxis2Cache };
 
                                 if (ps.PhysicalXAxis1Cache.Axis == axis_)
+                                {
                                     physicalAxis_ = ps.PhysicalXAxis1Cache;
+                                }
                                 else if (ps.PhysicalXAxis2Cache.Axis == axis_)
+                                {
                                     physicalAxis_ = ps.PhysicalXAxis2Cache;
+                                }
                                 else if (ps.PhysicalYAxis1Cache.Axis == axis_)
+                                {
                                     physicalAxis_ = ps.PhysicalYAxis1Cache;
+                                }
                                 else if (ps.PhysicalYAxis2Cache.Axis == axis_)
+                                {
                                     physicalAxis_ = ps.PhysicalYAxis2Cache;
+                                }
 
                                 lastPoint_ = startPoint_ = new Point(e.X, e.Y);
 
                                 return false;
                             }
                         }
-
                     }
 
 					return false;
@@ -2326,8 +2331,15 @@ namespace NPlot.Windows
 							float relativePosX = (startPoint_.X - pMin.X) / (pMax.X - pMin.X);
 							float relativePosY = (startPoint_.Y - pMin.Y) / (pMax.Y - pMin.Y);
 
-							if (float.IsInfinity(relativePosX) || float.IsNaN(relativePosX)) relativePosX = 0.0f;
-							if (float.IsInfinity(relativePosY) || float.IsNaN(relativePosY)) relativePosY = 0.0f;
+                            if (float.IsInfinity(relativePosX) || float.IsNaN(relativePosX))
+                            {
+                                relativePosX = 0.0f;
+                            }
+
+                            if (float.IsInfinity(relativePosY) || float.IsNaN(relativePosY))
+                            {
+                                relativePosY = 0.0f;
+                            }
 
 							PointF physicalWorldMin = pMin;
 							PointF physicalWorldMax = pMax;
@@ -2369,9 +2381,9 @@ namespace NPlot.Windows
 
 					return false;
                 }
-
                 private float sensitivity_ = 200.0f;
                 
+
                 /// <summary>
                 /// 
                 /// </summary>
@@ -2387,7 +2399,6 @@ namespace NPlot.Windows
                         sensitivity_ = value;
                     }
                 }
-
             }
             #endregion
             #region MouseWheelZoom
@@ -2400,6 +2411,7 @@ namespace NPlot.Windows
                 private Point point_ = new Point(-1, -1);
                 //private bool mouseDown_ = false;
 
+
                 /// <summary>
                 /// 
                 /// </summary>
@@ -2410,6 +2422,7 @@ namespace NPlot.Windows
                     //mouseDown_ = false;
 					return false;
                 }
+
 
                 /// <summary>
                 /// 
@@ -2429,6 +2442,7 @@ namespace NPlot.Windows
                     //}
 					return false;
                 }
+
 
                 /// <summary>
                 /// 
@@ -2489,13 +2503,11 @@ namespace NPlot.Windows
 				/// </summary>
 				public float Sensitivity			                 
 				{
-					get
-										                     
+					get				                     
 					{
 						return sensitivity_;
 					}
-					set
-									                     
+					set			                     
 					{
 						sensitivity_ = value;
 					}
@@ -2545,6 +2557,7 @@ namespace NPlot.Windows
         /// </summary>
         public event InteractionHandler InteractionOccured;
 
+
         /// <summary>
         /// Default function called when plotsurface modifying interaction occured. 
         /// 
@@ -2555,6 +2568,7 @@ namespace NPlot.Windows
         {
             // do nothing.
         }
+
 
         /// <summary>
         /// This is the signature of the function used for PreRefresh events.
@@ -2689,7 +2703,7 @@ namespace NPlot.Windows
 
 				}
 
-				private string text_;
+				
 				/// <summary>
 				/// The text to put in the menu for this menu item.
 				/// </summary>
@@ -2700,8 +2714,9 @@ namespace NPlot.Windows
 						return text_;
 					}
 				}
+                private string text_;
 
-				private int index_;
+
 				/// <summary>
 				/// Index of this menu item in the menu.
 				/// </summary>
@@ -2712,8 +2727,9 @@ namespace NPlot.Windows
 						return index_;
 					}
 				}
+                private int index_;
 
-				private EventHandler callback_;
+
 				/// <summary>
 				/// EventHandler to call if menu selected.
 				/// </summary>
@@ -2724,8 +2740,9 @@ namespace NPlot.Windows
 						return callback_;
 					}
 				}
+                private EventHandler callback_;
 
-				private System.Windows.Forms.MenuItem menuItem_;
+				
 				/// <summary>
 				/// The Windows.Forms.MenuItem associated with this IPlotMenuItem
 				/// </summary>
@@ -2736,6 +2753,8 @@ namespace NPlot.Windows
 						return menuItem_;
 					}
 				}
+                private System.Windows.Forms.MenuItem menuItem_;
+
 
 				/// <summary>
 				/// Called before menu drawn.
@@ -2745,7 +2764,6 @@ namespace NPlot.Windows
 				{
 					// do nothing.
 				}
-
 			}
 			#endregion
 			#region PlotZoomBackMenuItem
@@ -2897,25 +2915,30 @@ namespace NPlot.Windows
 				plotSurface2D_.CopyToClipboard();
 			}
 
+
 			private void mnuCopyDataToClipboard_Click(object sender, System.EventArgs e) 
 			{
 				plotSurface2D_.CopyDataToClipboard();
 			}
+
 
 			private void mnuPrint_Click(object sender, System.EventArgs e) 
 			{
 				plotSurface2D_.Print( false );
 			}
 
+
 			private void mnuPrintPreview_Click(object sender, System.EventArgs e) 
 			{
 				plotSurface2D_.Print( true );
 			}
 
+
 			private void mnuDisplayCoordinates_Click(object sender, System.EventArgs e)
 			{
 				plotSurface2D_.ShowCoordinates = !plotSurface2D_.ShowCoordinates;
 			}
+
 
 			private void rightMenu__Popup(object sender, System.EventArgs e)
 			{
@@ -2953,7 +2976,5 @@ namespace NPlot.Windows
 		}
 
 		private System.ComponentModel.IContainer components;
-
 	}
-
 }

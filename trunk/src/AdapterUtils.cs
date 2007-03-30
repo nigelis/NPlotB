@@ -156,7 +156,6 @@ namespace NPlot
                     {
                         return new DateTimeAxis(min, max);
                     }
-
                     else
                     {
                         return new LinearAxis(min, max);
@@ -219,7 +218,6 @@ namespace NPlot
                         abscissaData_.Start,
                         abscissaData_.Start + (double)(ordinateData_.Count - 1) * abscissaData_.Step);
                 }
-
                 else
                 {
                     return new LinearAxis(0.0, 1.0);
@@ -233,7 +231,6 @@ namespace NPlot
         /// </summary>
         public class AxisSuggester_Auto : IAxisSuggester
         {
-            
 			IList ordinateData_;
 
             /// <summary>
@@ -254,9 +251,7 @@ namespace NPlot
                 if (ordinateData_!=null && ordinateData_.Count>0)
                 {
                     return new LinearAxis(0, ordinateData_.Count - 1);
-
                 }
-
                 else
                 {
                     return new LinearAxis(0.0, 1.0);
@@ -291,7 +286,6 @@ namespace NPlot
                 {
                 	return new LinearAxis(0, ordinateData_.Count - 1);
                 }
-
                 else
                 {
                 	return new LinearAxis(0.0, 1.0);
@@ -333,7 +327,6 @@ namespace NPlot
                     {
                         return new DateTimeAxis(min, max);
                     }
-
                     else
                     {
                         return new LinearAxis(min, max);
@@ -379,7 +372,6 @@ namespace NPlot
                     {
                         return new DateTimeAxis(min, max);
                     }
-
                     else
                     {
                         return new LinearAxis(min, max);
@@ -508,7 +500,6 @@ namespace NPlot
                     return dataView_.Count;
                 }
             }
-
         }
 
         #endregion
@@ -717,7 +708,6 @@ namespace NPlot
 		/// <remarks>Note: Does not implement IDataGetter... Currently this class is not used.</remarks>
 		public class DataGetter_MultiRows 
 		{
-			
 			DataRowCollection rows_;
 			string abscissaName_;
 			int abscissaColumnNumber_;
@@ -733,8 +723,10 @@ namespace NPlot
 				abscissaName_ = omitThisColumn;
 
 				abscissaColumnNumber_ = rows_[0].Table.Columns.IndexOf( omitThisColumn );
-				if (abscissaColumnNumber_ < 0)
-					throw new NPlotException( "invalid column name" );
+                if (abscissaColumnNumber_ < 0)
+                {
+                    throw new NPlotException("invalid column name");
+                }
 			}
 
 			/// <summary>
@@ -756,10 +748,14 @@ namespace NPlot
 			/// <returns>the required data point.</returns>
 			public double PointAt( int index, int seriesIndex )
 			{
-				if (seriesIndex < abscissaColumnNumber_)
-					return Utils.ToDouble( rows_[index][seriesIndex] );
-				else
-					return Utils.ToDouble( rows_[index][seriesIndex+1] );
+                if (seriesIndex < abscissaColumnNumber_)
+                {
+                    return Utils.ToDouble(rows_[index][seriesIndex]);
+                }
+                else
+                {
+                    return Utils.ToDouble(rows_[index][seriesIndex + 1]);
+                }
 			}
 
 		}

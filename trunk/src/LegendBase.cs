@@ -85,7 +85,6 @@ namespace NPlot
 		/// <returns>bounding box</returns>
 		public Rectangle Draw( Graphics g, Point position, ArrayList plots, float scale )
 		{
-
 			// first of all determine the Font to use in the legend.
 			Font textFont;
 			if (this.AutoScaleText)
@@ -138,7 +137,6 @@ namespace NPlot
 			bool extendingHorizontally = numberItemsHorizontally_ == -1;
 			bool extendingVertically = numberItemsVertically_ == -1;
 
-
 			// determine width in legend items count units.
 			int widthInItemCount = 0;
 			if (extendingVertically)
@@ -162,7 +160,6 @@ namespace NPlot
 			{
 				throw new NPlotException( "logic error in legend base" );
 			}
-
 
 			// determine height of legend in items count units.
 			int heightInItemCount = 0;
@@ -217,7 +214,6 @@ namespace NPlot
 				   // TODO. make this nice.
 			   }
 			*/
-
 			else
 			{
 				// do nothing.
@@ -275,7 +271,6 @@ namespace NPlot
 				++labelCount;
 			}
 			return new Rectangle( position.X, position.Y, totalWidth, totalHeight );
-
 		}
 
 
@@ -356,10 +351,12 @@ namespace NPlot
 			/// No border.
 			/// </summary>
 			None = 0,
+
 			/// <summary>
 			/// Line border.
 			/// </summary>
 			Line = 1,
+
 			/// <summary>
 			/// Shaded border.
 			/// </summary>
@@ -433,7 +430,5 @@ namespace NPlot
 			}
 		}
 		int numberItemsHorizontally_ = 1;
-
 	}
-
 }

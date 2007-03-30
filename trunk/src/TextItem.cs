@@ -34,16 +34,19 @@ using System.Drawing;
 
 namespace NPlot
 {
+
 	/// <summary>
 	/// This class implements drawing text against two physical axes.
 	/// </summary>
 	public class TextItem : IDrawable
 	{
+
 		private void Init()
 		{
 			FontFamily fontFamily = new FontFamily("Arial");
 			font_ = new Font(fontFamily, 10, FontStyle.Regular, GraphicsUnit.Pixel);
 		}
+
 
 		/// <summary>
 		/// Constructor

@@ -110,7 +110,5 @@ namespace NPlot
 
 			marker_.Draw( g, (int)point.X, (int)point.Y );
 		}
-	
-
 	}
 }

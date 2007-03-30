@@ -146,9 +146,7 @@ namespace NPlot
 				{
 					g.DrawLine( Pen, xPos2.X, yPos2.Y, xPos3.X, yPos3.Y );
 				}
-
 			}
-
 		}  
 
 
@@ -332,6 +330,5 @@ namespace NPlot
 			}
 		}
 		private float scale_ = 1.0f;
-
     }
 }

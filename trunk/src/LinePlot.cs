@@ -121,7 +121,6 @@ namespace NPlot
 			}
 			else
 			{
-
                 // prepare for clipping
                 double leftCutoff = xAxis.PhysicalToWorld(xAxis.PhysicalMin, false);
                 double rightCutoff = xAxis.PhysicalToWorld(xAxis.PhysicalMax, false);
@@ -165,7 +164,9 @@ namespace NPlot
                     // when very far zoomed in, points can fall ontop of each other,
                     // and g.DrawLine throws an overflow exception
                     if (p1.Equals(p2))
+                    {
                         continue;
+                    }
 
 					if (drawShadow)
 					{
@@ -181,7 +182,6 @@ namespace NPlot
 					}
 				}
 			}
-
 		}
 
 
@@ -329,7 +329,5 @@ namespace NPlot
                 return pen_.Color;
             }
         }
-
-    
     }
 }

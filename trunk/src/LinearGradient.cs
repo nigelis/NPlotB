@@ -133,7 +133,5 @@ namespace NPlot
 
 			return Color.FromArgb(r,g,b);
 		}
-
-
 	}
 }

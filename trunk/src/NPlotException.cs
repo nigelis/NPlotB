@@ -65,6 +65,5 @@ namespace NPlot
 		public NPlotException()
 		{
 		}
-
 	}
 }

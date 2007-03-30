@@ -79,6 +79,5 @@ namespace NPlot
 		/// <param name="region">Only write out data in this region if onlyInRegion is true.</param>
 		/// <param name="onlyInRegion">If true, only data in region is written, else all data is written.</param>
 		void WriteData( System.Text.StringBuilder sb, RectangleD region, bool onlyInRegion );
-
 	}
 }

@@ -86,6 +86,5 @@ namespace NPlot
 				this.step_ = value;
 			}
 		}
-
 	}
 }

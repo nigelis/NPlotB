@@ -52,7 +52,5 @@ namespace NPlot
 		/// Transforms the given world point to physical coordinates
 		/// </summary>
 		PointF Transform( PointD worldPoint );
-
 	}
-
 }

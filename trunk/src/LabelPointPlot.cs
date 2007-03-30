@@ -53,6 +53,7 @@ namespace NPlot
 			private object dataSource_;
 			private string dataMember_;
 
+
 			public TextDataAdapter( object dataSource, string dataMember, object data )
 			{
 				this.data_ = data;
@@ -60,13 +61,12 @@ namespace NPlot
 				this.dataMember_ = dataMember;
 			}
 
+
 			public string this[int i]
 			{
 				get
 				{
-
 					// this is inefficient [could set up delegates in constructor].
-
 					if (data_ is string[])
 					{
 						return ((string[])data_)[i];
@@ -94,12 +94,10 @@ namespace NPlot
 								rows = ((DataTable)((DataSet)dataSource_).Tables[0]).Rows;
 							}
 						}
-
 						else if (dataSource_ is System.Data.DataTable )
 						{
 							rows = ((DataTable)dataSource_).Rows;
 						}
-
 						else
 						{
 							throw new NPlotException ( "not implemented yet" );
@@ -111,8 +109,10 @@ namespace NPlot
 					if (data_ is System.Collections.ArrayList)
 					{
 						object dataPoint = ((System.Collections.ArrayList)data_)[i];
-						if (dataPoint is string)
-							return (string)dataPoint;
+                        if (dataPoint is string)
+                        {
+                            return (string)dataPoint;
+                        }
 						throw new NPlotException( "TextDataAdapter: data not in recognised format" );
 					}
 					
@@ -131,7 +131,6 @@ namespace NPlot
 				get
 				{
 					// this is inefficient [could set up delegates in constructor].
-
 					if (data_ == null)
 					{
 						return 0;
@@ -147,7 +146,6 @@ namespace NPlot
 					throw new NPlotException( "Text data not in correct format" );
 				}
 			}
-
 		}
 
 
@@ -160,14 +158,17 @@ namespace NPlot
 			/// Above the point
 			/// </summary>
 			Above,
+
 			/// <summary>
 			/// Below the point
 			/// </summary>
 			Below,
+
 			/// <summary>
 			/// To the left of the point
 			/// </summary>
 			Left,
+
 			/// <summary>
 			/// To the right of the point
 			/// </summary>
@@ -296,9 +297,6 @@ namespace NPlot
 					throw new NPlotException("Error in TextPlot.Draw");
 				}
 			}
-
 		}
-
-
 	}
 }

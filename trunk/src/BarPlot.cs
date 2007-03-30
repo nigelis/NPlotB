@@ -130,7 +130,6 @@ namespace NPlot
 					g.DrawRectangle( borderPen_, r );
 				}
 			}
-
 		}
 
 		/// <summary>
@@ -149,8 +148,6 @@ namespace NPlot
 			axis.LUB(dataBottom_.SuggestXAxis());
 			return axis;
 		}
-
-
 
 
 		/// <summary>
@@ -184,6 +181,7 @@ namespace NPlot
 			g.FillRectangle( rectangleBrush_.Get( newRectangle ), newRectangle );
 			g.DrawRectangle( borderPen_, newRectangle );
 		}
+
 
 		/// <summary>
 		/// The pen used to draw the plot
@@ -238,7 +236,6 @@ namespace NPlot
 			{
 				rectangleBrush_ = value;
 			}
-
 		}
 		private IRectangleBrush rectangleBrush_ = new RectangleBrushes.Solid( Color.LightGray );
 
@@ -271,8 +268,5 @@ namespace NPlot
 		{
 			sb.Append( "Write data not implemented yet for BarPlot\r\n" );
 		}
-
-
 	}
-
 }

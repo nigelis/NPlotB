@@ -37,6 +37,7 @@ using System.Collections;
 
 namespace NPlot
 {
+
 	/// <summary>
 	/// General purpose utility functions used internally.
 	/// </summary>
@@ -245,7 +246,6 @@ namespace NPlot
 			}
 
 			return true;
-
 		}
 
 
@@ -292,7 +292,6 @@ namespace NPlot
 			}
 
 			return true;
-
 		}
 
 
@@ -312,6 +311,7 @@ namespace NPlot
 					(float)((1.0f/dirNorm)*dir.X), 
 					(float)((1.0f/dirNorm)*dir.Y) ); // normalised axis direction vector
 			}
+
 			return dir;
 		}
 
@@ -328,6 +328,7 @@ namespace NPlot
 			double sz = initial.Size;
 			sz = sz * scale ;
 			string nm = initial.Name;
+
 			return new Font( nm, (float)sz, fs, gu );
 		}
 
@@ -352,8 +353,5 @@ namespace NPlot
 
 			return final;
 		}
-
 	}
-
-
 }

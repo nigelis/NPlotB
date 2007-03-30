@@ -151,10 +151,14 @@ namespace NPlot
 			{
 				string label = i.ToString() + "Pi";
 
-				if (i == 0)
-					label = "0";
-				else if (i == 1)
-					label = "Pi";
+                if (i == 0)
+                {
+                    label = "0";
+                }
+                else if (i == 1)
+                {
+                    label = "Pi";
+                }
 
 				this.DrawTick( g, i*Math.PI, this.LargeTickSize, 
 					label,
@@ -166,7 +170,6 @@ namespace NPlot
 					ref labelOffset, ref boundingBox, 
 					tLabelOffset, tBoundingBox );
 			}
-
 		}
 
 
@@ -202,9 +205,6 @@ namespace NPlot
 			{
 				largeTickPositions.Add( i*Math.PI ); 
 			}
-
 		}
-
-
 	}
 }
