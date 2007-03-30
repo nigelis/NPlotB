@@ -231,6 +231,5 @@ namespace NPlot
 		/// <param name="p"></param>
 		void UpdateAxes( IPlot p );
 */
-
 	}
 }

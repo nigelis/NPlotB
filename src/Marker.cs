@@ -51,58 +51,72 @@ namespace NPlot
 			/// A simple cross marker (x).
 			/// </summary>
 			Cross1,
+
 			/// <summary>
 			/// Another simple cross marker (+).
 			/// </summary>
 			Cross2,
+
 			/// <summary>
 			/// A circle marker.
 			/// </summary>
 			Circle,
+
 			/// <summary>
 			/// A square marker.
 			/// </summary>
 			Square,
+
 			/// <summary>
 			/// A triangle marker (upwards).
 			/// </summary>
 			Triangle,
+
 			/// <summary>
 			/// A triangle marker (upwards).
 			/// </summary>
 			TriangleUp,
+
 			/// <summary>
 			/// A triangle marker (upwards).
 			/// </summary>
 			TriangleDown,
+
 			/// <summary>
 			/// A diamond,
 			/// </summary>
 			Diamond,
+
 			/// <summary>
 			/// A filled circle
 			/// </summary>
 			FilledCircle,
+
 			/// <summary>
 			/// A filled square
 			/// </summary>
 			FilledSquare,
+
 			/// <summary>
 			/// A filled triangle
 			/// </summary>
 			FilledTriangle,
+
 			/// <summary>
 			/// A small flag (up)
 			/// </summary>
 			Flag,
+
 			/// <summary>
 			/// A small flag (up)
 			/// </summary>
 			FlagUp,
+
 			/// <summary>
 			/// A small flag (down)
 			/// </summary>
 			FlagDown,
+
 			/// <summary>
 			/// No marker
 			/// </summary>
@@ -322,10 +336,8 @@ namespace NPlot
 		/// <param name="y">The [physical] y position to draw the marker.</param>
 		public void Draw( Graphics g, int x, int y )
 		{
-
 			switch (markerType_)
 			{
-
 				case MarkerType.Cross1:
 					g.DrawLine( pen_, x-h_, y+h_, x+h_, y-h_ );
 					g.DrawLine( pen_, x+h_, y+h_, x-h_, y-h_ );
@@ -459,9 +471,6 @@ namespace NPlot
 				case MarkerType.None:
 					break;
 			}
-
 		}
-
-
 	}
 }

@@ -502,7 +502,6 @@ namespace NPlot
 
 		private float DetermineScaleFactor( int w, int h )
 		{
-
 			float diag = (float)Math.Sqrt( w*w +  h*h );
 			float scaleFactor = (diag / 1400.0f)*2.4f;
 			
@@ -577,7 +576,6 @@ namespace NPlot
 			{
 				UpdateAxes( false );
 			}
-
 		}
 
         private int uniqueCounter_ = 0;
@@ -748,10 +746,8 @@ namespace NPlot
                             this.yAxis2_.TicksIndependentOfPhysicalExtent = false;
                         }
                     }
-
                 }
             }
-
         }
 
 
@@ -799,7 +795,6 @@ namespace NPlot
 				yAxis2.HideTickText = true;
 				yAxis2.TicksAngle = -(float)Math.PI / 2.0f;
 			}
-
 		}
 
 
@@ -897,9 +892,7 @@ namespace NPlot
 			pXAxis2.PhysicalMax = new Point( cb.Right-rightIndent, cb.Top+topIndent );
 			pYAxis2.PhysicalMin = new Point( cb.Right-rightIndent, cb.Bottom-bottomIndent );
 			pYAxis2.PhysicalMax = new Point( cb.Right-rightIndent, cb.Top+topIndent );
-
 		}
-
 
 
 		/// <summary>
@@ -943,22 +936,38 @@ namespace NPlot
 
 			// apply scale factor to axes as desired.
 
-			if (xAxis1.AutoScaleTicks) 
-				xAxis1.TickScale = scale;
-			if (xAxis1.AutoScaleText)
-				xAxis1.FontScale = scale;
-			if (yAxis1.AutoScaleTicks)
-				yAxis1.TickScale = scale;
-			if (yAxis1.AutoScaleText)
-				yAxis1.FontScale = scale;
-			if (xAxis2.AutoScaleTicks)
-				xAxis2.TickScale = scale;
-			if (xAxis2.AutoScaleText)
-				xAxis2.FontScale = scale;
-			if (yAxis2.AutoScaleTicks)
-				yAxis2.TickScale = scale;
-			if (yAxis2.AutoScaleText)
-				yAxis2.FontScale = scale;
+            if (xAxis1.AutoScaleTicks)
+            {
+                xAxis1.TickScale = scale;
+            }
+            if (xAxis1.AutoScaleText)
+            {
+                xAxis1.FontScale = scale;
+            }
+            if (yAxis1.AutoScaleTicks)
+            {
+                yAxis1.TickScale = scale;
+            }
+            if (yAxis1.AutoScaleText)
+            {
+                yAxis1.FontScale = scale;
+            }
+            if (xAxis2.AutoScaleTicks)
+            {
+                xAxis2.TickScale = scale;
+            }
+            if (xAxis2.AutoScaleText)
+            {
+                xAxis2.FontScale = scale;
+            }
+            if (yAxis2.AutoScaleTicks)
+            {
+                yAxis2.TickScale = scale;
+            }
+            if (yAxis2.AutoScaleText)
+            {
+                yAxis2.FontScale = scale;
+            }
 
 			// determine the default physical positioning of those axes.
 			PhysicalAxis pXAxis1 = null;
@@ -981,7 +990,6 @@ namespace NPlot
 			/////////////////////////////////////////////////////////////////////////
 			// draw legend if have one.
 			// Note: this will update axes if necessary. 
-
 			Point legendPosition = new Point(0,0);
 			if (this.legend_ != null)
 			{
@@ -992,7 +1000,6 @@ namespace NPlot
 			}
 
 			float newXAxis2Height = pXAxis2.PhysicalMin.Y;
-
 			float titleExtraOffset = oldXAxis2Height - newXAxis2Height;
 	
 			// now we are ready to define the bounding box for the plot area (to use in clipping
@@ -1261,7 +1268,6 @@ namespace NPlot
 		}
 
 
-
         /// <summary>
         /// Gets an array list containing all drawables currently added to the PlotSurface2D.
         /// </summary>
@@ -1322,8 +1328,6 @@ namespace NPlot
 			}
 		}
 		int legendZOrder_ = -1;
-
-
     } 
 } 
 

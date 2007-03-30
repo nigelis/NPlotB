@@ -56,6 +56,7 @@ namespace NPlot
 			RGB
 		}
 
+
 		/// <summary>
 		/// Sets the type of step gradient.
 		/// </summary>
@@ -90,6 +91,7 @@ namespace NPlot
 			stepType_  = stepType;
 		}
 
+
 		/// <summary>
 		/// Gets a color corresponding to a number between 0.0 and 1.0 inclusive. The color will
 		/// be a linear interpolation of the min and max colors.
@@ -102,19 +104,46 @@ namespace NPlot
 			{
 				case Type.RGB:
 				{
-					if (prop < 1.0/3.0) return Color.Red;
-					if (prop < 2.0/3.0) return Color.Green;
+                    if (prop < 1.0 / 3.0)
+                    {
+                        return Color.Red;
+                    }
+                    if (prop < 2.0 / 3.0)
+                    {
+                        return Color.Green;
+                    }
 					return Color.Blue;
 				}
 				case Type.Rainbow:
 				{
-					if (prop < 0.125) return Color.Red;
-					if (prop < 0.25) return Color.Orange;
-					if (prop < 0.375) return Color.Yellow;
-					if (prop < 0.5) return Color.Green;
-					if (prop < 0.625) return Color.Cyan;
-					if (prop < 0.75) return Color.Blue;
-					if (prop < 0.825) return Color.Purple;
+                    if (prop < 0.125) 
+                    { 
+                        return Color.Red; 
+                    }
+					if (prop < 0.25)
+                    { 
+                        return Color.Orange;
+                    }
+					if (prop < 0.375)
+                    { 
+                        return Color.Yellow;
+                    }
+					if (prop < 0.5)
+                    { 
+                        return Color.Green;
+                    }
+					if (prop < 0.625)
+                    { 
+                        return Color.Cyan;
+                    }
+					if (prop < 0.75)
+                    { 
+                        return Color.Blue;
+                    }
+					if (prop < 0.825)
+                    { 
+                        return Color.Purple;
+                    }
 					return Color.Pink;
 				}
 				default:
@@ -122,8 +151,6 @@ namespace NPlot
 					return Color.Black;
 				}
 			}
-
 		}
-
 	} 
 }

@@ -215,7 +215,6 @@ namespace NPlot
 		/// </summary>
 		public class AxisPosition : AxesConstraint
 		{
-
 			private object xAxisPosition_;
 			private object yAxisPosition_;
 			private int position_;
@@ -439,7 +438,6 @@ namespace NPlot
 					pXAxis2.PhysicalMax = new Point( pXAxis2.PhysicalMax.X, pXAxis2.PhysicalMax.Y+changeTop );
 
 				}
-
 				else 
 				{
 

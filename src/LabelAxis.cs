@@ -97,6 +97,7 @@ namespace NPlot
 			Init();
 		}
 
+
 		/// <summary>
 		/// Default constructor
 		/// </summary>
@@ -105,6 +106,7 @@ namespace NPlot
 		{
 			Init();
 		}
+
 
 		/// <summary>
 		/// Constructor
@@ -157,10 +159,8 @@ namespace NPlot
 			PointF lastPos = WorldToPhysical( (double)numbers_[0], physicalMin, physicalMax, true );
 			for (int i=0; i<labels_.Count; ++i)
 			{
-				
 				if ((double)numbers_[i] > WorldMin && (double)numbers_[i] < WorldMax)
 				{
-					
 					// check to make sure labels are far enough appart.
 					PointF thisPos = WorldToPhysical( (double)numbers_[i], physicalMin, physicalMax, true );
 					float dist = Utils.Distance( thisPos, lastPos );
@@ -209,7 +209,6 @@ namespace NPlot
 						tLabelOffset, tBoundingBox );
 				}
 			}
-
 		}
 
 
@@ -267,7 +266,6 @@ namespace NPlot
 					}
 				}
 			}
-
 		}
 
 

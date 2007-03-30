@@ -116,10 +116,8 @@ namespace NPlot
             }
             else if (lp1_ != null && lp2_ != null)
             {
-
                 SequenceAdapter a1 = new SequenceAdapter(lp1_.DataSource, lp1_.DataMember, lp1_.OrdinateData, lp1_.AbscissaData);
                 SequenceAdapter a2 = new SequenceAdapter(lp2_.DataSource, lp2_.DataMember, lp2_.OrdinateData, lp2_.AbscissaData);
-
 
                 int count = a1.Count + a2.Count;
                 PointF[] points = new PointF[count];
@@ -179,5 +177,4 @@ namespace NPlot
 		private Brush brush_ = new SolidBrush( Color.GhostWhite );
 		private IRectangleBrush areaBrush_ = null;
 	}
-
 }

@@ -42,6 +42,7 @@ namespace NPlot
 	/// </summary>
 	public interface IRectangleBrush
 	{
+
 		/// <summary>
 		/// Gets a brush according to the supplied rectangle.
 		/// </summary>
@@ -1656,6 +1657,7 @@ namespace NPlot
 		/// </summary>
 		public class Horizontal : IRectangleBrush
 		{
+
 			private Color c1_;
 			private Color c2_;
 			
@@ -1670,6 +1672,7 @@ namespace NPlot
 				c2_ = c2;
 			}
 
+
 			/// <summary>
 			/// Gets a brush according to the supplied rectangle.
 			/// </summary>
@@ -1679,6 +1682,7 @@ namespace NPlot
 			{
 				return new LinearGradientBrush( rectangle, c1_, c2_, LinearGradientMode.Horizontal );
 			}
+
 
 		    public Brush Get(RectangleF rectangle)
 		    {
@@ -1730,6 +1734,7 @@ namespace NPlot
 		/// </summary>
 		public class Vertical : IRectangleBrush
 		{
+
 			private Color c1_;
 			private Color c2_;
 			
@@ -1753,6 +1758,7 @@ namespace NPlot
 			{
 				return new LinearGradientBrush( rectangle, c1_, c2_, LinearGradientMode.Vertical );
 			}
+
 
 		    public Brush Get(RectangleF rectangle)
 		    {
@@ -1803,6 +1809,7 @@ namespace NPlot
 		/// </summary>
 		public class HorizontalCenterFade : IRectangleBrush
 		{
+
 			private Color c1_;
 			private Color c2_;
 
@@ -1816,6 +1823,7 @@ namespace NPlot
 				c1_ = c1;
 				c2_ = c2;
 			}
+
 
 			/// <summary>
 			/// Gets a brush according to the supplied rectangle.
@@ -1833,6 +1841,7 @@ namespace NPlot
 				brush.Blend = blend;
 				return brush;
 			}
+
 
 		    public Brush Get(RectangleF rectangle)
 		    {
@@ -1891,6 +1900,7 @@ namespace NPlot
 		/// </summary>
 		public class VerticalCenterFade : IRectangleBrush
 		{
+
 			private Color c1_;
 			private Color c2_;
 
@@ -1904,6 +1914,7 @@ namespace NPlot
 				c1_ = c1;
 				c2_ = c2;
 			}
+
 
 			/// <summary>
 			/// Gets a brush according to the supplied rectangle.
@@ -1921,6 +1932,7 @@ namespace NPlot
 				brush.Blend = blend;
 				return brush;
 			}
+
 
 		    public Brush Get(RectangleF rectangle)
 		    {
@@ -1970,9 +1982,6 @@ namespace NPlot
 			}
 
 			#endregion
-
 		}
-
-
 	}
 }

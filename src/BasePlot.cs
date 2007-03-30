@@ -110,8 +110,5 @@ namespace NPlot
 			}
 		}
 		private string dataMember_ = null;
-
-
-
 	}
 }
