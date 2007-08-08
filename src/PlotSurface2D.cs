@@ -462,8 +462,17 @@ namespace NPlot
 			yAxisPositions_ = new ArrayList();
             zPositions_ = new ArrayList();
             ordering_ = new SortedList();
-            FontFamily fontFamily = new FontFamily("Arial");
-			TitleFont = new Font(fontFamily, 14, FontStyle.Regular, GraphicsUnit.Pixel);
+
+            try
+            {
+                FontFamily fontFamily = new FontFamily("Arial");
+                TitleFont = new Font(fontFamily, 14, FontStyle.Regular, GraphicsUnit.Pixel);
+            }
+            catch (System.ArgumentException)
+            {
+                throw new NPlotException("Error: Arial font is not installed on this system");
+            }
+
 			padding_ = 10;
 			title_ = "";
 			autoScaleTitle_ = false;
