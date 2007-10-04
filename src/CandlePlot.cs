@@ -30,6 +30,7 @@
  */
 
 using System;
+using System.Collections;
 using System.Drawing;
 using System.Data;
 
@@ -303,14 +304,14 @@ namespace NPlot
 
                         return new PointOLHC(x, open, low, high, close);
                     }
-					// the data is coming from individual arrays.
-                    else if (abscissaData_ is Array && openData_ is Array && lowData_ is Array && highData_ is Array && closeData_ is Array)
+					// the data is coming from individual ILists.
+                    else if (abscissaData_ is IList && openData_ is IList && lowData_ is IList && highData_ is IList && closeData_ is IList)
                     {
-                        double x = Utils.ToDouble(((Array)abscissaData_).GetValue(i));
-                        double open = Utils.ToDouble(((Array)openData_).GetValue(i));
-                        double low = Utils.ToDouble(((Array)lowData_).GetValue(i));
-                        double high = Utils.ToDouble(((Array)highData_).GetValue(i));
-                        double close = Utils.ToDouble(((Array)closeData_).GetValue(i));
+                        double x = Utils.ToDouble(((IList)abscissaData_)[i]);
+                        double open = Utils.ToDouble(((IList)openData_)[i]);
+                        double low = Utils.ToDouble(((IList)lowData_)[i]);
+                        double high = Utils.ToDouble(((IList)highData_)[i]);
+                        double close = Utils.ToDouble(((IList)closeData_)[i]);
 
                         return new PointOLHC(x, open, low, high, close);
                     }
@@ -346,20 +347,20 @@ namespace NPlot
 						return rows_.Count;
 					}
 
-                    if (openData_ is Array)
+                    if (openData_ is IList)
                     {
-                        int size = ((Array)openData_).Length;
-                        if (size != ((Array)closeData_).Length)
+                        int size = ((IList)openData_).Count;
+                        if (size != ((IList)closeData_).Count)
                         {
                             throw new NPlotException("open and close arrays are not of same length");
                         }
-                        if (size != ((Array)lowData_).Length)
+                        if (size != ((IList)lowData_).Count)
                         {
-                            throw new NPlotException("open and close arrays are not of same length");
+                            throw new NPlotException("open and low arrays are not of same length");
                         }
-                        if (size != ((Array)highData_).Length)
+                        if (size != ((IList)highData_).Count)
                         {
-                            throw new NPlotException("open and close arrays are not of same length");
+                            throw new NPlotException("open and high arrays are not of same length");
                         }
                         return size;
                     }
@@ -385,15 +386,15 @@ namespace NPlot
 
                     if (((System.Collections.IList)abscissaData_).Count > 1)
                     {
-                        double first = Utils.ToDouble(((Array)abscissaData_).GetValue(0));
-                        double second = Utils.ToDouble(((Array)abscissaData_).GetValue(1));
+                        double first = Utils.ToDouble(((IList)abscissaData_)[0]);
+                        double second = Utils.ToDouble(((IList)abscissaData_)[1]);
                         minStep = Math.Abs(second - first);
                     }
 
                     if (((System.Collections.IList)abscissaData_).Count > 2)
                     {
-                        double first = Utils.ToDouble(((Array)abscissaData_).GetValue(1));
-                        double second = Utils.ToDouble(((Array)abscissaData_).GetValue(2));
+                        double first = Utils.ToDouble(((IList)abscissaData_)[0]);
+                        double second = Utils.ToDouble(((IList)abscissaData_)[1]);
                         if (Math.Abs(second - first) < minStep)
                             minStep = Math.Abs(second - first);
                     }
