@@ -178,7 +178,11 @@ namespace NPlot
 					}
 					else
 					{
-						g.DrawLine( Pen, p1.X, p1.Y, p2.X, p2.Y );
+                        // Ensure that we do not go outside of the graphics capabilities
+                        if ((Math.Abs(p1.X) + Math.Abs(p2.X)) < 0x4000007F && (Math.Abs(p1.Y) + Math.Abs(p2.Y)) < 0x4000007F)
+                        {
+                            g.DrawLine(Pen, p1.X, p1.Y, p2.X, p2.Y);
+                        }
 					}
 				}
 			}
