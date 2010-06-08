@@ -1019,29 +1019,36 @@ namespace NPlot.Windows
 			printDocument.DefaultPageSettings.Landscape = true;
 				 	
 			DialogResult result;
-			if (!preview) 
-			{
-				PrintDialog dlg = new PrintDialog();
-				dlg.Document = printDocument;
-				result = dlg.ShowDialog();
-			} 
-			else 
-			{
-				PrintPreviewDialog dlg = new PrintPreviewDialog();
-				dlg.Document = printDocument;
-				result = dlg.ShowDialog();
-			}
-			if (result == DialogResult.OK) 
-			{
-				try 
-				{
-					printDocument.Print();
-				}								 				
-				catch 
-				{
-					Console.WriteLine( "caught\n" );
-				}
-			}
+            try
+            {
+                if (!preview)
+                {
+                    PrintDialog dlg = new PrintDialog();
+                    dlg.Document = printDocument;
+                    result = dlg.ShowDialog();
+                }
+                else
+                {
+                    PrintPreviewDialog dlg = new PrintPreviewDialog();
+                    dlg.Document = printDocument;
+                    result = dlg.ShowDialog();
+                }
+                if (result == DialogResult.OK)
+                {
+                    try
+                    {
+                        printDocument.Print();
+                    }
+                    catch
+                    {
+                        Console.WriteLine("caught\n");
+                    }
+                }
+            }
+            catch (InvalidPrinterException)
+            {
+                Console.WriteLine("caught\n");
+            }
 		}
 
 
