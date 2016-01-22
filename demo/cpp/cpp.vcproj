@@ -190,8 +190,8 @@
 			AssemblyName="System.Xml, Version=2.0.0.0, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
 		/>
 		<AssemblyReference
-			RelativePath="..\..\bin\net\2.0\debug\NPlot.dll"
-			AssemblyName="NPlot, Version=0.9.10.1, PublicKeyToken=4eda430eb4395eb1, processorArchitecture=MSIL"
+			RelativePath="..\..\bin\net\1.1\Debug\NPlot.dll"
+			AssemblyName="NPlot, Version=0.9.10.0, PublicKeyToken=4eda430eb4395eb1, processorArchitecture=MSIL"
 		/>
 	</References>
 	<Files>

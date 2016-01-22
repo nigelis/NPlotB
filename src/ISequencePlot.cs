@@ -59,5 +59,7 @@ namespace NPlot
 		/// Gets or sets the data, or column name for the ordinate [y] axis.
 		/// </summary>
 		object OrdinateData { get; set; }
+
 	}
+
 }

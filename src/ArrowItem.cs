@@ -210,14 +210,10 @@ namespace NPlot
 		public void Draw( System.Drawing.Graphics g, PhysicalAxis xAxis, PhysicalAxis yAxis )
 		{
             if (this.To.X > xAxis.Axis.WorldMax || this.To.X < xAxis.Axis.WorldMin)
-            {
                 return;
-            }
 
             if (this.To.Y > yAxis.Axis.WorldMax || this.To.Y < yAxis.Axis.WorldMin)
-            {
                 return;
-            }
 
             double angle = this.angle_;
 
@@ -324,6 +320,7 @@ namespace NPlot
 					{
 						offsetFromMiddle = new PointF( halfSize.Width, -dist );
 					}
+
 					break;
 
 				case 3:
@@ -336,6 +333,7 @@ namespace NPlot
 					{
 						offsetFromMiddle = new PointF( -dist, -halfSize.Height );
 					}
+
 					break;
 
 				default:

@@ -40,7 +40,6 @@ namespace NPlot
 	/// </summary>
 	public class PointPlot : BaseSequencePlot, ISequencePlot, IPlot
 	{
-
 		private Marker marker_;
 
 		/// <summary>
@@ -81,9 +80,7 @@ namespace NPlot
 				{
 					PointF xPos = xAxis.WorldToPhysical( data_[i].X, false);
                     if (xPos.X < leftCutoff_ || rightCutoff_ < xPos.X)
-                    {
-                        continue;
-                    }
+						continue;
 
 					PointF yPos = yAxis.WorldToPhysical( data_[i].Y, false);
 					marker_.Draw( g, (int)xPos.X, (int)yPos.Y );
@@ -158,5 +155,8 @@ namespace NPlot
 				return marker_;
 			}
 		}
+
+
+
 	}
 }

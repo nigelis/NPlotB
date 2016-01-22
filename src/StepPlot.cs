@@ -121,8 +121,9 @@ namespace NPlot
 				PointF yPos3 = yAxis.WorldToPhysical( p3.Y, false );
 
 				// do horizontal clipping here, to speed up
-                if ((p1.X < leftCutoff && p2.X < leftCutoff && p3.X < leftCutoff) ||
-                    (p1.X > rightCutoff && p2.X > rightCutoff && p3.X > rightCutoff))
+				if ((p1.X < leftCutoff || p1.X > rightCutoff ) &&
+					(p2.X < leftCutoff || p2.X > rightCutoff ) && 
+					(p3.X < leftCutoff || p3.X > rightCutoff ) )
 				{
 					continue;
 				}
@@ -146,8 +147,10 @@ namespace NPlot
 				{
 					g.DrawLine( Pen, xPos2.X, yPos2.Y, xPos3.X, yPos3.Y );
 				}
+
 			}
-		}  
+
+		}
 
 
 		/// <summary>
@@ -330,5 +333,6 @@ namespace NPlot
 			}
 		}
 		private float scale_ = 1.0f;
+
     }
 }

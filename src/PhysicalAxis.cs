@@ -241,7 +241,6 @@ namespace NPlot
 			}
 		}
 
-
 		/// <summary>
 		/// The length in world coordinates of one pixel. 
 		/// </summary>
@@ -252,5 +251,6 @@ namespace NPlot
 				return this.Axis.WorldLength / this.PhysicalLength;
 			}
 		}
+
 	}
 }

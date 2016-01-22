@@ -71,7 +71,7 @@ namespace NPlotDemo {
         costPS->YAxis1->LabelOffset = 40;
         costPS->YAxis1->LabelOffsetAbsolute = true;
         costPS->XAxis1->HideTickText = true;
-        costPS->SurfacePadding = 5;
+        costPS->Padding = 5;
 		costPS->AddInteraction(gcnew NPlot::Windows::PlotSurface2D::Interactions::HorizontalDrag());
 		costPS->AddInteraction(gcnew NPlot::Windows::PlotSurface2D::Interactions::VerticalDrag());
         costPS->AddInteraction(gcnew NPlot::Windows::PlotSurface2D::Interactions::AxisDrag(false));
@@ -89,7 +89,7 @@ namespace NPlotDemo {
         volumePS->YAxis1->Label = "Volume";
         volumePS->YAxis1->LabelOffsetAbsolute = true;
         volumePS->YAxis1->LabelOffset = 40;
-        volumePS->SurfacePadding = 5;
+        volumePS->Padding = 5;
 		volumePS->AddAxesConstraint(gcnew AxesConstraint::AxisPosition(PlotSurface2D::YAxisPosition::Left, 60));
 		volumePS->AddInteraction(gcnew NPlot::Windows::PlotSurface2D::Interactions::AxisDrag(false));
         volumePS->AddInteraction(gcnew NPlot::Windows::PlotSurface2D::Interactions::HorizontalDrag());

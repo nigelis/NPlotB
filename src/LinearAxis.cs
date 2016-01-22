@@ -37,7 +37,6 @@ using System.Diagnostics;
 
 namespace NPlot
 {
-
 	/// <summary>
 	/// Provides functionality for drawing axes with a linear numeric scale.
 	/// </summary>
@@ -167,6 +166,7 @@ namespace NPlot
 					
 					Axis.UpdateOffsetAndBounds( ref labelOffset, ref boundingBox, 
 						tLabelOffset, tBoundingBox );
+
 				}
 			}
 
@@ -179,6 +179,7 @@ namespace NPlot
 
 				// assume bounding box and label offset unchanged by small tick bounds.
 			}
+
 		}
 
 
@@ -238,8 +239,8 @@ namespace NPlot
 					}
 				}
 			}
-		}
 
+		}
 
 		/// <summary>
 		/// Adjusts a real world value to one that has been modified to
@@ -291,6 +292,7 @@ namespace NPlot
 				out shouldCullMiddle );
 
 			// (3) determine starting position.
+		
 			double first = 0.0f;
 
 			if (!double.IsNaN(largeTickValue_)) 
@@ -298,6 +300,7 @@ namespace NPlot
 				// this works for both case when largTickValue_ lt or gt adjustedMin.
 				first = largeTickValue_ + (Math.Ceiling((adjustedMin-largeTickValue_)/tickDist))*tickDist;
 			}
+
 			else
 			{
 				if( adjustedMin > 0.0 )
@@ -318,7 +321,9 @@ namespace NPlot
 				}
 			}
 
+
 			// (4) now make list of large tick positions.
+			
 			largeTickPositions = new ArrayList();
 
 			if (tickDist < 0.0) // some sanity checking. TODO: remove this.
@@ -354,6 +359,7 @@ namespace NPlot
 				culledPositions.Add( largeTickPositions[largeTickPositions.Count-1] );
 				largeTickPositions = culledPositions;
 			}
+
 		}
 
 
@@ -460,6 +466,7 @@ namespace NPlot
 
 			// and we're done.
 			return Math.Pow( 10.0, exponent ) * Mantissas[mantissaIndex];
+
 		}
 
 
@@ -471,6 +478,7 @@ namespace NPlot
 		/// <returns>the number of small ticks to place between large ticks.</returns>
 		private int DetermineNumberSmallTicks( double bigTickDist )
 		{
+
 			if (this.numberSmallTicks_ != null)
 			{
 				return (int)this.numberSmallTicks_+1;
@@ -494,9 +502,11 @@ namespace NPlot
 						return SmallTickCounts[i]+1;
 					}
 				}
+
 			}
 				
 			return 0;
+
 		}
 
 
@@ -538,7 +548,6 @@ namespace NPlot
 		}
 		private double largeTickValue_ = double.NaN;
 
-
 		/// <summary>
 		/// The number of small ticks between large ticks.
 		/// </summary>
@@ -555,7 +564,6 @@ namespace NPlot
 			}
 		}
 		private object numberSmallTicks_ = null;
-
 
 		/// <summary>
 		/// Scale to apply to world values when labelling axis:
@@ -574,7 +582,6 @@ namespace NPlot
 			}
 		}
 
-
 		/// <summary>
 		/// Offset to apply to world values when labelling the axis:
 		/// (labelWorld = axisWorld * scale + offset). This does not
@@ -592,7 +599,6 @@ namespace NPlot
 			}
 		}
 
-
 		/// <summary>
 		/// If LargeTickStep isn't specified, then a suitable value is 
 		/// calculated automatically. To determine the tick spacing, the
@@ -602,14 +608,12 @@ namespace NPlot
 		/// </summary>
 		public float ApproxNumberLargeTicks = 3.0f;
 
-
 		/// <summary>
 		/// If LargeTickStep isn't specified, then a suitable value is
 		/// calculated automatically. The value will be of the form
 		/// m*10^e for some m in this set.
 		/// </summary>
 		public double[] Mantissas = {1.0, 2.0, 5.0};
-
 
 		/// <summary>
 		/// If NumberOfSmallTicks isn't specified then .... 

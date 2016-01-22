@@ -31,7 +31,6 @@
 
 namespace NPlot
 {
-
 	/// <summary>
 	/// Represtents a point in two-dimensional space. Used for representation
 	/// of points world coordinates.
@@ -67,5 +66,6 @@ namespace NPlot
 		{
 			return X.ToString() + "\t" + Y.ToString();
 		}
+
 	}
 }

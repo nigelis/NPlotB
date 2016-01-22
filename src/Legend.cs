@@ -220,6 +220,7 @@ namespace NPlot
 			// (1) calculate legend position.
 
 			// y
+
 			position.Y = this.yOffset_;
 			
 			if ( this.xAttach_ == PlotSurface2D.XAxisPosition.Bottom )
@@ -240,6 +241,7 @@ namespace NPlot
 			}
 	
 			// x
+
 			position.X = this.xOffset_;
 		
 			if ( this.yAttach_ == PlotSurface2D.YAxisPosition.Left )
@@ -264,6 +266,7 @@ namespace NPlot
 
 			if ( !this.neverShiftAxes_ )
 			{
+
 				if ( position.X < padding )
 				{
 					int changeAmount = -position.X + padding;
@@ -319,7 +322,11 @@ namespace NPlot
 				pXAxis2.PhysicalMax = new Point( pXAxis2.PhysicalMax.X - rightIndent, pXAxis2.PhysicalMax.Y + topIndent );
 				pYAxis2.PhysicalMin = new Point( pYAxis2.PhysicalMin.X - rightIndent, pYAxis2.PhysicalMin.Y - bottomIndent );
 				pYAxis2.PhysicalMax = new Point( pYAxis2.PhysicalMax.X - rightIndent, pYAxis2.PhysicalMax.Y + topIndent );
+			
 			}
+
 		}
+
 	}
+
 }

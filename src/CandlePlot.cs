@@ -30,7 +30,6 @@
  */
 
 using System;
-using System.Collections;
 using System.Drawing;
 using System.Data;
 
@@ -146,6 +145,7 @@ namespace NPlot
 			}
 		}
 		private double high_;
+
 	}
 
 
@@ -248,10 +248,12 @@ namespace NPlot
 							rows_ = ((DataTable)((DataSet)dataSource_).Tables[0]).Rows;
 						}
 					}
+
 					else if (dataSource_ is DataTable )
 					{
 						rows_ = ((DataTable)dataSource_).Rows;
 					}
+
 					else
 					{
 						throw new NPlotException ( "not implemented yet" );
@@ -283,6 +285,7 @@ namespace NPlot
 			{
 				get
 				{
+                    
 					// try a fast track first
                     if (useDoublesArrays_)
                     {
@@ -293,6 +296,7 @@ namespace NPlot
                             highDataArray_[i],
                             closeDataArray_[i]);
                     }
+
                     // is the data coming from a data source?
                     else if (rows_ != null)
                     {
@@ -304,21 +308,24 @@ namespace NPlot
 
                         return new PointOLHC(x, open, low, high, close);
                     }
-					// the data is coming from individual ILists.
-                    else if (abscissaData_ is IList && openData_ is IList && lowData_ is IList && highData_ is IList && closeData_ is IList)
+
+					// the data is coming from individual arrays.
+                    else if (abscissaData_ is Array && openData_ is Array && lowData_ is Array && highData_ is Array && closeData_ is Array)
                     {
-                        double x = Utils.ToDouble(((IList)abscissaData_)[i]);
-                        double open = Utils.ToDouble(((IList)openData_)[i]);
-                        double low = Utils.ToDouble(((IList)lowData_)[i]);
-                        double high = Utils.ToDouble(((IList)highData_)[i]);
-                        double close = Utils.ToDouble(((IList)closeData_)[i]);
+                        double x = Utils.ToDouble(((Array)abscissaData_).GetValue(i));
+                        double open = Utils.ToDouble(((Array)openData_).GetValue(i));
+                        double low = Utils.ToDouble(((Array)lowData_).GetValue(i));
+                        double high = Utils.ToDouble(((Array)highData_).GetValue(i));
+                        double close = Utils.ToDouble(((Array)closeData_).GetValue(i));
 
                         return new PointOLHC(x, open, low, high, close);
                     }
+
                     else
                     {
                         throw new NPlotException("not implemented yet");
                     }
+
                 }
 			}
 
@@ -332,6 +339,7 @@ namespace NPlot
 				get
 				{
 					// this is inefficient [could set up delegates in constructor].
+
 					if (useDoublesArrays_)
 					{
 						return openDataArray_.Length;
@@ -347,21 +355,15 @@ namespace NPlot
 						return rows_.Count;
 					}
 
-                    if (openData_ is IList)
+                    if (openData_ is Array)
                     {
-                        int size = ((IList)openData_).Count;
-                        if (size != ((IList)closeData_).Count)
-                        {
+                        int size = ((Array)openData_).Length;
+                        if (size != ((Array)closeData_).Length)
                             throw new NPlotException("open and close arrays are not of same length");
-                        }
-                        if (size != ((IList)lowData_).Count)
-                        {
-                            throw new NPlotException("open and low arrays are not of same length");
-                        }
-                        if (size != ((IList)highData_).Count)
-                        {
-                            throw new NPlotException("open and high arrays are not of same length");
-                        }
+                        if (size != ((Array)lowData_).Length)
+                            throw new NPlotException("open and close arrays are not of same length");
+                        if (size != ((Array)highData_).Length)
+                            throw new NPlotException("open and close arrays are not of same length");
                         return size;
                     }
 
@@ -386,19 +388,17 @@ namespace NPlot
 
                     if (((System.Collections.IList)abscissaData_).Count > 1)
                     {
-                        double first = Utils.ToDouble(((IList)abscissaData_)[0]);
-                        double second = Utils.ToDouble(((IList)abscissaData_)[1]);
+                        double first = Utils.ToDouble(((Array)abscissaData_).GetValue(0));
+                        double second = Utils.ToDouble(((Array)abscissaData_).GetValue(1));
                         minStep = Math.Abs(second - first);
                     }
-
                     if (((System.Collections.IList)abscissaData_).Count > 2)
                     {
-                        double first = Utils.ToDouble(((IList)abscissaData_)[0]);
-                        double second = Utils.ToDouble(((IList)abscissaData_)[1]);
+                        double first = Utils.ToDouble(((Array)abscissaData_).GetValue(1));
+                        double second = Utils.ToDouble(((Array)abscissaData_).GetValue(2));
                         if (Math.Abs(second - first) < minStep)
                             minStep = Math.Abs(second - first);
                     }
-
                     if (((System.Collections.IList)abscissaData_)[0] is DateTime)
                     {
                         return new DateTimeAxis(min - minStep / 2.0, max + minStep / 2.0);
@@ -410,6 +410,7 @@ namespace NPlot
                 }
                 else
                 {
+
                     Utils.RowArrayMinMax(this.rows_, out min, out max, (string)this.abscissaData_);
 
                     if (rows_.Count > 1)
@@ -418,7 +419,6 @@ namespace NPlot
                         double second = Utils.ToDouble(rows_[1][(string)abscissaData_]);
                         minStep = Math.Abs(second - first);
                     }
-
                     if (rows_.Count > 2)
                     {
                         double first = Utils.ToDouble(rows_[1][(string)abscissaData_]);
@@ -436,6 +436,7 @@ namespace NPlot
                         return new LinearAxis(min - minStep / 2.0, max + minStep / 2.0);
                     }
                 }
+
             }
 
 
@@ -445,6 +446,7 @@ namespace NPlot
 			/// <returns>A suitable y-axis.</returns>
 			public Axis SuggestYAxis()
 			{
+
 				double min_l;
 				double max_l;
 				double min_h;
@@ -465,6 +467,7 @@ namespace NPlot
 				a.IncreaseRange( 0.08 );
 				return a;
 			}
+
 		}
 
 		
@@ -493,18 +496,12 @@ namespace NPlot
 				if (cd.Count > 2)
 				{  // to be pretty sure we get the smallest gap.
 					int xPos3 = (int)(xAxis.WorldToPhysical(((PointOLHC)cd[2]).X, false)).X;
-                    if (xPos3 - xPos2 < minDist)
-                    {
-                        minDist = xPos3 - xPos2;
-                    }
+					if (xPos3 - xPos2 < minDist) minDist = xPos3 - xPos2;
 
 					if (cd.Count > 3)
 					{
 						int xPos4 = (int)(xAxis.WorldToPhysical(((PointOLHC)cd[3]).X, false)).X;
-                        if (xPos4 - xPos3 < minDist)
-                        {
-                            minDist = xPos4 - xPos3;
-                        }
+						if (xPos4 - xPos3 < minDist) minDist = xPos4 - xPos3;
 					}
 				}
 
@@ -567,12 +564,11 @@ namespace NPlot
 				PointOLHC point = (PointOLHC)cd[i];
 				if ( (!double.IsNaN (point.Open)) && (!double.IsNaN(point.High)) && (!double.IsNaN (point.Low)) && (!double.IsNaN(point.Close)) )
 				{
+
 					int xPos = (int)(xAxis.WorldToPhysical( point.X, false )).X;
 
-                    if (xPos + offset + addAmount < xAxis.PhysicalMin.X || xAxis.PhysicalMax.X < xPos + offset - addAmount)
-                    {
-                        continue;
-                    }
+					if (xPos + offset + addAmount < xAxis.PhysicalMin.X || xAxis.PhysicalMax.X < xPos + offset - addAmount)
+						continue;
 
 					int yPos1 = (int)(yAxis.WorldToPhysical( point.Low, false )).Y;
 					int yPos2 = (int)(yAxis.WorldToPhysical( point.High, false )).Y;
@@ -581,6 +577,7 @@ namespace NPlot
 
 					if (this.Style == Styles.Stick)
 					{
+
 						/*
 						// brant hyatt proposed.
 						if (i > 0) 
@@ -600,6 +597,7 @@ namespace NPlot
 						g.DrawLine( p, xPos-addAmount+offset, yPos3, xPos+offset, yPos3 );
 						g.DrawLine( p, xPos+offset, yPos4, xPos+addAmount+offset, yPos4 );
 					}
+
 					else if (this.Style == Styles.Filled)
 					{
 						g.DrawLine( p, xPos+offset, yPos1, xPos+offset, yPos2 );
@@ -617,9 +615,12 @@ namespace NPlot
 						{
 							g.DrawLine( p, xPos-addAmount+offset, yPos3, xPos-addAmount+stickWidth+offset, yPos3 );
 						}
+
 					}
+
 				}
 			}
+
 		}
 
 
@@ -745,6 +746,7 @@ namespace NPlot
 
 			g.DrawLine( p, startEnd.Left, (startEnd.Top + startEnd.Bottom)/2, 
 				startEnd.Right, (startEnd.Top + startEnd.Bottom)/2 );
+
 		}
 
 
@@ -772,6 +774,7 @@ namespace NPlot
 		/// </summary>
 		public enum Styles
 		{
+
 			/// <summary>
 			/// Draw vertical line between low and high, tick on left for open and tick on right for close.
 			/// </summary>
@@ -783,6 +786,7 @@ namespace NPlot
 			/// in BullishColor and BearishColor properties.
 			/// </summary>
 			Filled
+
 		}
 
 
@@ -861,5 +865,6 @@ namespace NPlot
 		public void WriteData( System.Text.StringBuilder sb, RectangleD region, bool onlyInRegion )
 		{
 		}
+
 	}
 }

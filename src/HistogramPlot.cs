@@ -87,29 +87,23 @@ namespace NPlot
 
 				// (1) determine the top left hand point of the bar (assuming not centered)
 				PointD p1 = data[i];
-                if (double.IsNaN(p1.X) || double.IsNaN(p1.Y))
-                {
-                    continue;
-                }
+				if ( double.IsNaN(p1.X) || double.IsNaN(p1.Y) )
+					continue;
 				
 				// (2) determine the top right hand point of the bar (assuming not centered)
 				PointD p2;
 				if (i+1 != data.Count)
 				{
 					p2 = data[i+1];
-                    if (double.IsNaN(p2.X) || double.IsNaN(p2.Y))
-                    {
-                        continue;
-                    }
+					if ( double.IsNaN(p2.X) || double.IsNaN(p2.Y) )
+						continue;
 					p2.Y = p1.Y;
 				}
 				else if (i != 0)
 				{
 					p2 = data[i-1];
-                    if (double.IsNaN(p2.X) || double.IsNaN(p2.Y))
-                    {
-                        continue;
-                    }
+					if ( double.IsNaN(p2.X) || double.IsNaN(p2.Y) )
+						continue;
 					double offset = p1.X - p2.X;
 					p2.X = p1.X + offset;
 					p2.Y = p1.Y;
@@ -180,8 +174,8 @@ namespace NPlot
 				}
 
 				float xoff = (1.0f - baseWidth_)/2.0f*width;
-				RectangleF r = new RectangleF( xPos1.X+xoff, yPos1.Y, width-2*xoff, height );
-                   
+				Rectangle r = new Rectangle( (int)(xPos1.X+xoff), (int)yPos1.Y, (int)(width-2*xoff), (int)height );
+
 				if (this.Filled)
 				{
 					if (r.Height != 0 && r.Width != 0)
@@ -192,6 +186,7 @@ namespace NPlot
 				}
 
 				g.DrawRectangle( Pen, r.X, r.Y, r.Width, r.Height );
+				
 			}
 		}
 
@@ -300,7 +295,8 @@ namespace NPlot
 		/// <returns>A suitable y-axis.</returns>
 		public Axis SuggestYAxis()
 		{
-			if (this.isStacked_)
+
+			if ( this.isStacked_ )
 			{
 				double tmpMax = 0.0f;
 				ArrayList adapterList = new ArrayList();
@@ -437,12 +433,14 @@ namespace NPlot
 		/// <param name="startEnd">A rectangle specifying the bounds of the area in the legend set aside for drawing.</param>
 		public void DrawInLegend( Graphics g, Rectangle startEnd )
 		{
+	
 			if (Filled)
 			{
 				g.FillRectangle( rectangleBrush_.Get(startEnd), startEnd );
 			}
 
 			g.DrawRectangle( Pen, startEnd.X, startEnd.Y, startEnd.Width, startEnd.Height );
+
 		}
 
 
@@ -501,5 +499,7 @@ namespace NPlot
             }
         }
         private double baseOffset_;
+
+
     }
 }

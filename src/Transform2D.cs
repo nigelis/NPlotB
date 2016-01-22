@@ -112,6 +112,8 @@ namespace NPlot
 		}
 	
 
+
+
 		/// <summary>
 		/// This class does highly efficient world->physical and physical->world transforms
 		/// for linear axes. 
@@ -121,6 +123,7 @@ namespace NPlot
 
 			private PageAlignedPhysicalAxis xAxis_;
 			private PageAlignedPhysicalAxis yAxis_;
+
 
 			/// <summary>
 			/// Constructor
@@ -159,6 +162,9 @@ namespace NPlot
 					xAxis_.WorldToPhysical( worldPoint.X ),
 					yAxis_.WorldToPhysical( worldPoint.Y ) );
 			}
+
 		}
+
+
 	}
 }

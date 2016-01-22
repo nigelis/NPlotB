@@ -333,30 +333,12 @@ namespace NPlot
 			}
 		}
 
-#if API_1_1
-		/// <summary>
-		/// It has been renamed to <see cref="SurfacePadding" /> and can be used with .NET 1.1 only.
-		/// </summary>
-		[
-		Obsolete("This property is only maintained in .NET 1.1 profile for compatibility, but it might be removed in the future. Use SurfacePadding instead")
-		]
-		public int Padding
-		{
-			get
-			{
-				return SurfacePadding;
-			}
-			set
-			{
-				SurfacePadding = value;
-			}
-		}
-#endif
+
 		/// <summary>
 		/// The distance in pixels to leave between of the edge of the bounding rectangle
 		/// supplied to the Draw method, and the markings that make up the plot.
 		/// </summary>
-		public int SurfacePadding
+		public int Padding
 		{
 			get
 			{
@@ -462,17 +444,8 @@ namespace NPlot
 			yAxisPositions_ = new ArrayList();
             zPositions_ = new ArrayList();
             ordering_ = new SortedList();
-
-            try
-            {
-                FontFamily fontFamily = new FontFamily("Arial");
-                TitleFont = new Font(fontFamily, 14, FontStyle.Regular, GraphicsUnit.Pixel);
-            }
-            catch (System.ArgumentException)
-            {
-                throw new NPlotException("Error: Arial font is not installed on this system");
-            }
-
+            FontFamily fontFamily = new FontFamily("Arial");
+			TitleFont = new Font(fontFamily, 14, FontStyle.Regular, GraphicsUnit.Pixel);
 			padding_ = 10;
 			title_ = "";
 			autoScaleTitle_ = false;
@@ -511,6 +484,7 @@ namespace NPlot
 
 		private float DetermineScaleFactor( int w, int h )
 		{
+
 			float diag = (float)Math.Sqrt( w*w +  h*h );
 			float scaleFactor = (diag / 1400.0f)*2.4f;
 			
@@ -585,6 +559,7 @@ namespace NPlot
 			{
 				UpdateAxes( false );
 			}
+
 		}
 
         private int uniqueCounter_ = 0;
@@ -617,13 +592,14 @@ namespace NPlot
 
             for (int i = position; i < drawables_.Count; ++i)
             {
+
                 // only update axes if this drawable is an IPlot.
-                if (!(drawables_[i] is IPlot))
+                if (!(drawables_[position] is IPlot))
                     continue;
 
-                IPlot p = (IPlot)drawables_[i];
-                XAxisPosition xap = (XAxisPosition)xAxisPositions_[i];
-                YAxisPosition yap = (YAxisPosition)yAxisPositions_[i];
+                IPlot p = (IPlot)drawables_[position];
+                XAxisPosition xap = (XAxisPosition)xAxisPositions_[position];
+                YAxisPosition yap = (YAxisPosition)yAxisPositions_[position];
 
                 if (xap == XAxisPosition.Bottom)
                 {
@@ -755,8 +731,10 @@ namespace NPlot
                             this.yAxis2_.TicksIndependentOfPhysicalExtent = false;
                         }
                     }
+
                 }
             }
+
         }
 
 
@@ -804,6 +782,7 @@ namespace NPlot
 				yAxis2.HideTickText = true;
 				yAxis2.TicksAngle = -(float)Math.PI / 2.0f;
 			}
+
 		}
 
 
@@ -901,7 +880,9 @@ namespace NPlot
 			pXAxis2.PhysicalMax = new Point( cb.Right-rightIndent, cb.Top+topIndent );
 			pYAxis2.PhysicalMin = new Point( cb.Right-rightIndent, cb.Bottom-bottomIndent );
 			pYAxis2.PhysicalMax = new Point( cb.Right-rightIndent, cb.Top+topIndent );
+
 		}
+
 
 
 		/// <summary>
@@ -945,38 +926,22 @@ namespace NPlot
 
 			// apply scale factor to axes as desired.
 
-            if (xAxis1.AutoScaleTicks)
-            {
-                xAxis1.TickScale = scale;
-            }
-            if (xAxis1.AutoScaleText)
-            {
-                xAxis1.FontScale = scale;
-            }
-            if (yAxis1.AutoScaleTicks)
-            {
-                yAxis1.TickScale = scale;
-            }
-            if (yAxis1.AutoScaleText)
-            {
-                yAxis1.FontScale = scale;
-            }
-            if (xAxis2.AutoScaleTicks)
-            {
-                xAxis2.TickScale = scale;
-            }
-            if (xAxis2.AutoScaleText)
-            {
-                xAxis2.FontScale = scale;
-            }
-            if (yAxis2.AutoScaleTicks)
-            {
-                yAxis2.TickScale = scale;
-            }
-            if (yAxis2.AutoScaleText)
-            {
-                yAxis2.FontScale = scale;
-            }
+			if (xAxis1.AutoScaleTicks) 
+				xAxis1.TickScale = scale;
+			if (xAxis1.AutoScaleText)
+				xAxis1.FontScale = scale;
+			if (yAxis1.AutoScaleTicks)
+				yAxis1.TickScale = scale;
+			if (yAxis1.AutoScaleText)
+				yAxis1.FontScale = scale;
+			if (xAxis2.AutoScaleTicks)
+				xAxis2.TickScale = scale;
+			if (xAxis2.AutoScaleText)
+				xAxis2.FontScale = scale;
+			if (yAxis2.AutoScaleTicks)
+				yAxis2.TickScale = scale;
+			if (yAxis2.AutoScaleText)
+				yAxis2.FontScale = scale;
 
 			// determine the default physical positioning of those axes.
 			PhysicalAxis pXAxis1 = null;
@@ -999,6 +964,7 @@ namespace NPlot
 			/////////////////////////////////////////////////////////////////////////
 			// draw legend if have one.
 			// Note: this will update axes if necessary. 
+
 			Point legendPosition = new Point(0,0);
 			if (this.legend_ != null)
 			{
@@ -1009,6 +975,7 @@ namespace NPlot
 			}
 
 			float newXAxis2Height = pXAxis2.PhysicalMin.Y;
+
 			float titleExtraOffset = oldXAxis2Height - newXAxis2Height;
 	
 			// now we are ready to define the bounding box for the plot area (to use in clipping
@@ -1277,6 +1244,7 @@ namespace NPlot
 		}
 
 
+
         /// <summary>
         /// Gets an array list containing all drawables currently added to the PlotSurface2D.
         /// </summary>
@@ -1337,6 +1305,8 @@ namespace NPlot
 			}
 		}
 		int legendZOrder_ = -1;
+
+
     } 
 } 
 

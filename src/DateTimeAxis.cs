@@ -152,7 +152,8 @@ namespace NPlot
 			Point physicalMax, 
 			out object labelOffset,
 			out object boundingBox )
-		{	
+		{
+			
 			// TODO: Look at offset and bounding box logic again here. why temp and other vars? 
 
 			Point tLabelOffset;
@@ -178,6 +179,7 @@ namespace NPlot
 			// draw large ticks.
 			for (int i=0; i<largeTicks.Count; ++i)
 			{
+					
 				DateTime tickDate = new DateTime( (long)((double)largeTicks[i]) );
                 string label = LargeTickLabel(tickDate);
 
@@ -205,18 +207,21 @@ namespace NPlot
 				{
 					label = tickDate.Year.ToString();
 				}
+
 				else if ( this.LargeTickLabelType_ == LargeTickLabelType.month )
 				{
 					label = tickDate.ToString("MMM");
 					label += " ";
 					label += tickDate.Year.ToString().Substring(2,2);
 				}
+
 				else if ( this.LargeTickLabelType_ == LargeTickLabelType.day )
 				{
 					label = (tickDate.Day).ToString();
 					label += " ";
 					label += tickDate.ToString("MMM");
-				}		
+				}
+				
 				else if ( this.LargeTickLabelType_ == LargeTickLabelType.hourMinute )
 				{
 					string minutes = tickDate.Minute.ToString();
@@ -241,6 +246,7 @@ namespace NPlot
 					}
 					label = tickDate.Hour.ToString() + ":" + minutes + "." + seconds;	
 				}
+
 			}
 			else 
 			{
@@ -322,33 +328,25 @@ namespace NPlot
 
 			if(largeTickStep_ == TimeSpan.Zero) 
 			{
+
 				// if less than 10 minutes, then large ticks on second spacings. 
+
 				if ( timeLength < new TimeSpan(0,0,2,0,0) )
 				{
 					this.LargeTickLabelType_ = LargeTickLabelType.hourMinuteSeconds;
 
 					double secondsSkip;
 
-                    if (timeLength < new TimeSpan(0, 0, 0, 10, 0))
-                    {
-                        secondsSkip = 1.0;
-                    }
-                    else if (timeLength < new TimeSpan(0, 0, 0, 20, 0))
-                    {
-                        secondsSkip = 2.0;
-                    }
-                    else if (timeLength < new TimeSpan(0, 0, 0, 50, 0))
-                    {
-                        secondsSkip = 5.0;
-                    }
-                    else if (timeLength < new TimeSpan(0, 0, 2, 30, 0))
-                    {
-                        secondsSkip = 15.0;
-                    }
-                    else
-                    {
-                        secondsSkip = 30.0;
-                    }
+					if (timeLength < new TimeSpan( 0,0,0,10,0 ) )
+						secondsSkip = 1.0;
+					else if ( timeLength < new TimeSpan(0,0,0,20,0) )
+						secondsSkip = 2.0;
+					else if ( timeLength < new TimeSpan(0,0,0,50,0) )
+						secondsSkip = 5.0;
+					else if ( timeLength < new TimeSpan(0,0,2,30,0) )
+						secondsSkip = 15.0;
+					else 
+						secondsSkip = 30.0;
 
 					int second = worldMinDate.Second;
 					second -= second % (int)secondsSkip;					
@@ -373,33 +371,25 @@ namespace NPlot
 						currentTickDate = currentTickDate.AddSeconds( secondsSkip );
 					}
 				}
+
 				// Less than 2 hours, then large ticks on minute spacings.
+
 				else if ( timeLength < new TimeSpan(0,2,0,0,0) )
 				{
 					this.LargeTickLabelType_ = LargeTickLabelType.hourMinute;
 
 					double minuteSkip;
 
-                    if (timeLength < new TimeSpan(0, 0, 10, 0, 0))
-                    {
-                        minuteSkip = 1.0;
-                    }
-                    else if (timeLength < new TimeSpan(0, 0, 20, 0, 0))
-                    {
-                        minuteSkip = 2.0;
-                    }
-                    else if (timeLength < new TimeSpan(0, 0, 50, 0, 0))
-                    {
-                        minuteSkip = 5.0;
-                    }
-                    else if (timeLength < new TimeSpan(0, 2, 30, 0, 0))
-                    {
-                        minuteSkip = 15.0;
-                    }
-                    else //( timeLength < new TimeSpan( 0,5,0,0,0) )
-                    {
-                        minuteSkip = 30.0;
-                    }
+					if ( timeLength < new TimeSpan(0,0,10,0,0) )
+						minuteSkip = 1.0;
+					else if ( timeLength < new TimeSpan(0,0,20,0,0) )
+						minuteSkip = 2.0;
+					else if ( timeLength < new TimeSpan(0,0,50,0,0) )
+						minuteSkip = 5.0;
+					else if ( timeLength < new TimeSpan(0,2,30,0,0) )
+						minuteSkip = 15.0;
+					else //( timeLength < new TimeSpan( 0,5,0,0,0) )
+						minuteSkip = 30.0;
 
 					int minute = worldMinDate.Minute;
 					minute -= minute % (int)minuteSkip;					
@@ -425,23 +415,19 @@ namespace NPlot
 				}
 
 				// Less than 2 days, then large ticks on hour spacings.
+
 				else if ( timeLength < new TimeSpan(2,0,0,0,0) )
 				{
 					this.LargeTickLabelType_ = LargeTickLabelType.hourMinute;
 
 					double hourSkip;
-                    if (timeLength < new TimeSpan(0, 10, 0, 0, 0))
-                    {
-                        hourSkip = 1.0;
-                    }
-                    else if (timeLength < new TimeSpan(0, 20, 0, 0, 0))
-                    {
-                        hourSkip = 2.0;
-                    }
-                    else
-                    {
-                        hourSkip = 6.0;
-                    }
+					if ( timeLength < new TimeSpan(0,10,0,0,0) )
+						hourSkip = 1.0;
+					else if ( timeLength < new TimeSpan(0,20,0,0,0) )
+						hourSkip = 2.0;
+					else
+						hourSkip = 6.0;
+
 
 					int hour = worldMinDate.Hour;
 					hour -= hour % (int)hourSkip;					
@@ -463,29 +449,25 @@ namespace NPlot
 
 						currentTickDate = currentTickDate.AddHours( hourSkip );
 					}
+
 				}
+
+
 				// less than 5 months, then large ticks on day spacings.
+
 				else if ( timeLength < new TimeSpan(daysInMonth*4,0,0,0,0))
 				{
 					this.LargeTickLabelType_ = LargeTickLabelType.day;
 
 					double daySkip;
-                    if (timeLength < new TimeSpan(10, 0, 0, 0, 0))
-                    {
-                        daySkip = 1.0;
-                    }
-                    else if (timeLength < new TimeSpan(20, 0, 0, 0, 0))
-                    {
-                        daySkip = 2.0;
-                    }
-                    else if (timeLength < new TimeSpan(7 * 10, 0, 0, 0, 0))
-                    {
-                        daySkip = 7.0;
-                    }
-                    else
-                    {
-                        daySkip = 14.0;
-                    }
+					if ( timeLength < new TimeSpan(10,0,0,0,0) )
+						daySkip = 1.0;
+					else if (timeLength < new TimeSpan(20,0,0,0,0) )
+						daySkip = 2.0;
+					else if (timeLength < new TimeSpan(7*10,0,0,0,0) )
+						daySkip = 7.0;
+					else 
+						daySkip = 14.0;
 
 					DateTime currentTickDate = new DateTime( 
 						worldMinDate.Year,
@@ -494,12 +476,11 @@ namespace NPlot
 
                     if (daySkip == 2.0)
                     {
+
                         TimeSpan timeSinceBeginning = currentTickDate - DateTime.MinValue;
 
                         if (timeSinceBeginning.Days % 2 == 1)
-                        {
                             currentTickDate = currentTickDate.AddDays(-1.0);
-                        }
                     }
 
                     if (daySkip == 7 || daySkip == 14.0)
@@ -527,9 +508,8 @@ namespace NPlot
                             case DayOfWeek.Sunday:
                                 currentTickDate = currentTickDate.AddDays(-6.0);
                                 break;
-                            default:
-                                break;
                         }
+
                     }
 
                     if (daySkip == 14.0f)
@@ -554,48 +534,38 @@ namespace NPlot
 						currentTickDate = currentTickDate.AddDays(daySkip);
 					}
 				}
-				// else ticks on month or year spacings.
+
+
+					// else ticks on month or year spacings.
+
 				else if ( timeLength >= new TimeSpan(daysInMonth*4,0,0,0,0) )
 				{
+
 					int monthSpacing = 0;
 			
 					if ( timeLength.Days < daysInMonth*(12*3+6) )
 					{
 						LargeTickLabelType_ = LargeTickLabelType.month;
 
-                        if (timeLength.Days < daysInMonth * 10)
-                        {
-                            monthSpacing = 1;
-                        }
-                        else if (timeLength.Days < daysInMonth * (12 * 2))
-                        {
-                            monthSpacing = 3;
-                        }
-                        else // if ( timeLength.Days < daysInMonth*(12*3+6) )
-                        {
-                            monthSpacing = 6;
-                        }
+						if ( timeLength.Days < daysInMonth*10 )
+							monthSpacing = 1;
+						else if ( timeLength.Days < daysInMonth*(12*2) )
+							monthSpacing = 3;
+						else // if ( timeLength.Days < daysInMonth*(12*3+6) )
+							monthSpacing = 6;
 					}
 					else
 					{
 						LargeTickLabelType_ = LargeTickLabelType.year;
 
                         if (timeLength.Days < daysInMonth * (12 * 6))
-                        {
                             monthSpacing = 12;
-                        }
                         else if (timeLength.Days < daysInMonth * (12 * 12))
-                        {
                             monthSpacing = 24;
-                        }
                         else if (timeLength.Days < daysInMonth * (12 * 30))
-                        {
                             monthSpacing = 60;
-                        }
                         else
-                        {
                             monthSpacing = 120;
-                        }
                         //LargeTickLabelType_ = LargeTickLabelType.none;
 					}
 
@@ -705,5 +675,7 @@ namespace NPlot
 			}
 		}
  		private TimeSpan largeTickStep_ = TimeSpan.Zero;
+
+
 	}
 }

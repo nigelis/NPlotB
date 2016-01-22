@@ -41,7 +41,6 @@ namespace NPlot
 	/// </summary>
 	public class ImagePlot : IPlot
 	{
-
 		private double[,] data_;
 		private double xStart_ = 0.0;
 		private double xStep_ = 1.0;
@@ -344,5 +343,7 @@ namespace NPlot
 		public void WriteData( System.Text.StringBuilder sb, RectangleD region, bool onlyInRegion )
 		{
 		}
+
+
 	}
 }

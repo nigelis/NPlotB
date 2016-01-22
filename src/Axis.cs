@@ -562,6 +562,7 @@ namespace NPlot
 		/// </summary>
 		protected static void DoClone( Axis b, Axis a )
 		{
+
 			// value items
 			a.autoScaleText_ = b.autoScaleText_;
 			a.autoScaleTicks_ = b.autoScaleTicks_;
@@ -601,6 +602,7 @@ namespace NPlot
 
 			a.FontScale = b.FontScale;
 			a.TickScale = b.TickScale;
+
 		}
 
 
@@ -822,26 +824,19 @@ namespace NPlot
 			// Force clipping at bounding box largeClip times that of real bounding box 
 			// anyway. This is effectively at infinity.
 			const double largeClip = 100.0;
-            if (prop > largeClip && clip)
-            {
-                prop = largeClip;
-            }
+			if (prop > largeClip && clip)
+				prop = largeClip;
 
-            if (prop < -largeClip && clip)
-            {
-                prop = -largeClip;
-            }
+			if (prop < -largeClip && clip)
+				prop = -largeClip;
 
 			if (range == 0)
 			{
-                if (coord >= WorldMin)
-                {
-                    prop = largeClip;
-                }
-                else
-                {
-                    prop = -largeClip;
-                }
+				if (coord >= WorldMin)
+					prop = largeClip;
+
+				if (coord < WorldMin)
+					prop = -largeClip;
 			}
 
 			// calculate the physical coordinate.
@@ -1064,10 +1059,8 @@ namespace NPlot
 			PointF tickEnd = new PointF( tickStart.X + tickVector.X, tickStart.Y + tickVector.Y );
 
 			// and draw it!
-            if (g != null)
-            {
-                g.DrawLine(this.linePen_, (int)tickStart.X, (int)tickStart.Y, (int)tickEnd.X, (int)tickEnd.Y);
-            }
+			if (g != null)
+				g.DrawLine( this.linePen_, (int)tickStart.X, (int)tickStart.Y, (int)tickEnd.X, (int)tickEnd.Y );
 			// note: casting to int for tick positions was necessary to ensure ticks drawn where we wanted
 			// them. Not sure of the reason.
 
@@ -1198,6 +1191,7 @@ namespace NPlot
 				}
 				else
 				{
+
 					float bx1 = (textCenterX - textSize.Width/2.0f);
 					float by1 = (textCenterY - textSize.Height/2.0f);
 					float bx2 = textSize.Width;
@@ -1226,6 +1220,7 @@ namespace NPlot
 					labelOffset = new Point( (int)textCenterX, (int)textCenterY );
 				}
 			} 
+
 		}
 
 
@@ -1254,6 +1249,7 @@ namespace NPlot
 
 			if (!Hidden)
 			{
+				
 				// (1) Draw the axis line.
 				g.DrawLine( this.linePen_, physicalMin.X, physicalMin.Y, physicalMax.X, physicalMax.Y );
 
@@ -1271,15 +1267,12 @@ namespace NPlot
 				}
 
 				// (4) merge bounds and return.
-                if (labelBounds != null)
-                {
-                    bounds = Rectangle.Union(bounds, (Rectangle)labelBounds);
-                }
+				if (labelBounds != null)
+					bounds = Rectangle.Union( bounds, (Rectangle)labelBounds );
 
-                if (tickBounds != null)
-                {
-                    bounds = Rectangle.Union(bounds, (Rectangle)tickBounds);
-                }
+				if (tickBounds != null)
+					bounds = Rectangle.Union( bounds, (Rectangle)tickBounds );
+
 			}
 
 			boundingBox = bounds;
@@ -1398,10 +1391,8 @@ namespace NPlot
 			ArrayList largeTickPositions, 
 			ref ArrayList smallTickPositions )
 		{
-            if (smallTickPositions == null)
-            {
-                smallTickPositions = new ArrayList();
-            }
+			if (smallTickPositions == null)
+				smallTickPositions = new ArrayList();
 		}
 
 
@@ -1463,6 +1454,7 @@ namespace NPlot
 			{
 				return fontScale_;
 			}
+ 
 			set 
 			{
 				fontScale_ = value;
@@ -1492,15 +1484,11 @@ namespace NPlot
 
 		private void UpdateScale()	
 		{
-            if (labelFont_ != null)
-            {
-                this.labelFontScaled_ = Utils.ScaleFont(labelFont_, FontScale);
-            }
-
-            if (tickTextFont_ != null)
-            {
-                this.tickTextFontScaled_ = Utils.ScaleFont(tickTextFont_, FontScale);
-            }
+			if (labelFont_ != null)
+				this.labelFontScaled_ = Utils.ScaleFont( labelFont_, FontScale );
+			
+			if (tickTextFont_ != null)
+				this.tickTextFontScaled_ = Utils.ScaleFont( tickTextFont_, FontScale );
 		}
 
 

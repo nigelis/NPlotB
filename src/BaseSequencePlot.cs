@@ -93,5 +93,6 @@ namespace NPlot
 			sb.Append( "\r\n" );
 			data_.WriteData( sb, region, onlyInRegion );
 		}
+
 	}
 }

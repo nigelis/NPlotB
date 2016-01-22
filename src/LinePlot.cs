@@ -121,6 +121,7 @@ namespace NPlot
 			}
 			else
 			{
+
                 // prepare for clipping
                 double leftCutoff = xAxis.PhysicalToWorld(xAxis.PhysicalMin, false);
                 double rightCutoff = xAxis.PhysicalToWorld(xAxis.PhysicalMax, false);
@@ -151,22 +152,20 @@ namespace NPlot
 					}
 
                     // do horizontal clipping here, to speed up
-                    if ((dx1 < leftCutoff && dx2 < leftCutoff) ||
-                        (rightCutoff < dx1 && rightCutoff < dx2))
+                    if ((dx1 < leftCutoff || rightCutoff < dx1) &&
+                        (dx2 < leftCutoff || rightCutoff < dx2))
                     {
                         continue;
                     }
 
-					// else draw line.  
+					// else draw line.
 					PointF p1 = t.Transform( data[i-1] );
 					PointF p2 = t.Transform( data[i] );
                     
                     // when very far zoomed in, points can fall ontop of each other,
                     // and g.DrawLine throws an overflow exception
                     if (p1.Equals(p2))
-                    {
                         continue;
-                    }
 
 					if (drawShadow)
 					{
@@ -178,14 +177,11 @@ namespace NPlot
 					}
 					else
 					{
-                        // Ensure that we do not go outside of the graphics capabilities
-                        if ((Math.Abs(p1.X) + Math.Abs(p2.X)) < 0x4000007F && (Math.Abs(p1.Y) + Math.Abs(p2.Y)) < 0x4000007F)
-                        {
-                            g.DrawLine(Pen, p1.X, p1.Y, p2.X, p2.Y);
-                        }
+						g.DrawLine( Pen, p1.X, p1.Y, p2.X, p2.Y );
 					}
 				}
 			}
+
 		}
 
 
@@ -333,5 +329,7 @@ namespace NPlot
                 return pen_.Color;
             }
         }
+
+    
     }
 }

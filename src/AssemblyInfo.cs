@@ -38,10 +38,10 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NPlot project")]
 [assembly: AssemblyProduct("NPlot")]
-[assembly: AssemblyCopyright("Copyright (C) 2003-2007 Matt Howlett and others")]
+[assembly: AssemblyCopyright("Copyright (C) 2003-2006 Matt Howlett and others")]
 [assembly: AssemblyTrademark("This program is under The BSD license")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("0.9.10.1")]
+[assembly: AssemblyVersion("0.9.10.0")]
 [assembly: CLSCompliant(true)]
 [assembly: AssemblyKeyFile(@"NPlot-key.snk")]
 

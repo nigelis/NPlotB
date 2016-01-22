@@ -72,5 +72,7 @@ namespace NPlot
 		/// </summary>
 		/// <param name="e">mouse event args</param>
 		void DoMouseDown( MouseEventArgs e );
+	
 	}
+
 }

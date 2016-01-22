@@ -125,5 +125,7 @@ namespace NPlot
 		{
 			return ((float)(physical-pMin_) / (float)pLength_) * worldLength_ + worldMin_;
 		}
+
+
 	}
 }

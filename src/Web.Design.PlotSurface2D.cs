@@ -38,53 +38,64 @@ using System.Web.UI.WebControls;
 using System.ComponentModel;
 using NPlot;
 
-namespace NPlot.Web.Design
+namespace NPlot
 {
-    /// <summary>
-    /// The Design Time rendered for the NPlot.web.PlotSurface2D control.
-    /// </summary>
-    public class PlotSurface2D : System.Web.UI.Design.ControlDesigner
-    {
+	
+	namespace Web
+	{
+		namespace Design
+		{
 
-	    /// <summary>
-	    /// The design time generated HTML for the control.
-	    /// </summary>
-	    /// <returns>A string containing the HTML rendering.</returns>
-	    public override string GetDesignTimeHtml()
-	    {
-    		
-		    // Extremely simple design time rendering!
-		    // will work on something better sooner or later.
-		    // This acts as a placeholder.
-		    Web.PlotSurface2D plot = (Web.PlotSurface2D)Component;
+			/// <summary>
+			/// The Design Time rendered for the NPlot.web.PlotSurface2D control.
+			/// </summary>
+			public class PlotSurface2D : System.Web.UI.Design.ControlDesigner
+			{
 
-		    int xs = Convert.ToInt32(plot.Width.Value);
-		    if ( xs < 1 ) return "";
-		    int ys = Convert.ToInt32(plot.Height.Value);
-		    if ( ys < 1 ) return "";
+				/// <summary>
+				/// The design time generated HTML for the control.
+				/// </summary>
+				/// <returns>A string containing the HTML rendering.</returns>
+				public override string GetDesignTimeHtml()
+				{
+					
+					// Extremely simple design time rendering!
+					// will work on something better sooner or later.
+					// This acts as a placeholder.
+					Web.PlotSurface2D plot = (Web.PlotSurface2D)Component;
 
-		    StringWriter sw = new StringWriter();
-		    HtmlTextWriter output= new HtmlTextWriter(sw);
-		    output.AddAttribute("border",plot.BorderWidth.ToString());
-		    output.AddAttribute("borderColor",plot.BorderColor.ToKnownColor().ToString());
-		    output.AddAttribute("cellSpacing","0");
-		    output.AddAttribute("cellPadding","0");
-		    output.AddAttribute("width",xs.ToString());
-		    output.RenderBeginTag("table ");
-		    output.RenderBeginTag("tr");
-		    output.AddAttribute("vAlign","center");
-		    output.AddAttribute("align","middle");
-		    output.AddAttribute("height",ys.ToString());
-		    output.RenderBeginTag("td");
-		    output.RenderBeginTag("P");
-		    output.Write("PlotSurface2D:" + plot.Title);
-		    output.RenderEndTag();
-		    output.RenderEndTag();
-		    output.RenderEndTag();
-		    output.RenderEndTag();
-		    output.Flush();
+					int xs = Convert.ToInt32(plot.Width.Value);
+					if ( xs < 1 ) return "";
+					int ys = Convert.ToInt32(plot.Height.Value);
+					if ( ys < 1 ) return "";
 
-		    return sw.ToString();
-	    }
-    }
+					StringWriter sw = new StringWriter();
+					HtmlTextWriter output= new HtmlTextWriter(sw);
+					output.AddAttribute("border",plot.BorderWidth.ToString());
+					output.AddAttribute("borderColor",plot.BorderColor.ToKnownColor().ToString());
+					output.AddAttribute("cellSpacing","0");
+					output.AddAttribute("cellPadding","0");
+					output.AddAttribute("width",xs.ToString());
+					output.RenderBeginTag("table ");
+					output.RenderBeginTag("tr");
+					output.AddAttribute("vAlign","center");
+					output.AddAttribute("align","middle");
+					output.AddAttribute("height",ys.ToString());
+					output.RenderBeginTag("td");
+					output.RenderBeginTag("P");
+					output.Write("PlotSurface2D:" + plot.Title);
+					output.RenderEndTag();
+					output.RenderEndTag();
+					output.RenderEndTag();
+					output.RenderEndTag();
+					output.Flush();
+					return sw.ToString();
+				
+				}
+
+			}
+
+		}
+
+	}
 }

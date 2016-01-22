@@ -34,7 +34,6 @@ using System.Drawing;
 
 namespace NPlot
 {
-
 	/// <summary>
 	/// Defines a Draw method for drawing objects against an x and y
 	/// Physical Axis.

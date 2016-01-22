@@ -44,7 +44,6 @@ namespace NPlot
 	/// </summary>
 	public class SequenceAdapter
 	{
-
 		private AdapterUtils.IAxisSuggester XAxisSuggester_;
 		private AdapterUtils.IAxisSuggester YAxisSuggester_;
         private AdapterUtils.ICounter counter_;
@@ -60,19 +59,17 @@ namespace NPlot
 		/// <param name="abscissaData">The source containing a list of values to plot on the abscissa axis, or a the name of the column to use for this data.</param>
 		public SequenceAdapter( object dataSource, string dataMember, object ordinateData, object abscissaData )
 		{
+
 			if (dataSource == null && dataMember == null)
 			{
 				if (ordinateData is IList) 
 				{
+
                     this.YAxisSuggester_ = new AdapterUtils.AxisSuggester_IList((IList)ordinateData);
                     if (ordinateData is Double[])
-                    {
                         this.yDataGetter_ = new AdapterUtils.DataGetter_DoublesArray((Double[])ordinateData);
-                    }
                     else
-                    {
                         this.yDataGetter_ = new AdapterUtils.DataGetter_IList((IList)ordinateData);
-                    }
 
                     this.counter_ = new AdapterUtils.Counter_IList((IList)ordinateData);
 
@@ -80,22 +77,20 @@ namespace NPlot
 					{
                         this.XAxisSuggester_ = new AdapterUtils.AxisSuggester_IList((IList)abscissaData);
                         if (abscissaData is Double[])
-                        {
                             this.xDataGetter_ = new AdapterUtils.DataGetter_DoublesArray((Double[])abscissaData);
-                        }
                         else
-                        {
                             this.xDataGetter_ = new AdapterUtils.DataGetter_IList((IList)abscissaData);
-                        }
 
                         return;
 					}
+
 					else if (abscissaData is StartStep)
 					{
                         this.XAxisSuggester_ = new AdapterUtils.AxisSuggester_StartStep((StartStep)abscissaData, (IList)ordinateData);
                         this.xDataGetter_ = new AdapterUtils.DataGetter_StartStep((StartStep)abscissaData);
                         return;
 					}
+
 					else if (abscissaData == null)
 					{
                         this.XAxisSuggester_ = new AdapterUtils.AxisSuggester_Auto((IList)ordinateData);
@@ -103,6 +98,8 @@ namespace NPlot
                         return;
 					}
 				}
+				
+
 				else if (ordinateData == null)
 				{
 					if (abscissaData == null)
@@ -127,16 +124,20 @@ namespace NPlot
                         this.yDataGetter_ = new AdapterUtils.DataGetter_Count();
                         return;
 					}
+					
 					else
 					{
 						// unknown.
 					}
+
 				}
 				else
 				{
 					// unknown
 				}
+
 			}
+
 			else if (dataSource is IList && dataMember == null)
 			{
 				if (dataSource is DataView)
@@ -150,6 +151,7 @@ namespace NPlot
                     this.YAxisSuggester_ = new AdapterUtils.AxisSuggester_DataView(data, (string)ordinateData);
                     return;
 				}
+
 				else
 				{
                     this.YAxisSuggester_ = new AdapterUtils.AxisSuggester_IList((IList)dataSource);
@@ -162,24 +164,28 @@ namespace NPlot
                         this.xDataGetter_ = new AdapterUtils.DataGetter_Count();
                         return;
 					}
+
 					else if ((ordinateData == null) && (abscissaData is StartStep))
 					{
                         this.XAxisSuggester_ = new AdapterUtils.AxisSuggester_StartStep((StartStep)abscissaData, (IList)ordinateData);
                         this.xDataGetter_ = new AdapterUtils.DataGetter_StartStep((StartStep)abscissaData);
                         return;
 					}
+
 					else if ((ordinateData == null) && (abscissaData is IList))
 					{
                         this.XAxisSuggester_ = new AdapterUtils.AxisSuggester_IList((IList)abscissaData);
                         this.xDataGetter_ = new AdapterUtils.DataGetter_IList((IList)abscissaData);
                         return;
 					}
+
 					else
 					{
 						// unknown.
 					}
 				}
 			}
+
 			else if ( ((dataSource is DataTable) && (dataMember == null)) || (dataSource is DataSet) )
 			{
 				DataRowCollection rows = null;
@@ -221,12 +227,14 @@ namespace NPlot
 					// unknown.
 				}
 			}
+
 			else
 			{
 				// unknown.
 			}
 
 			throw new NPlotException( "Do not know how to interpret data provided to chart." );
+
 		}
 
 
@@ -297,16 +305,16 @@ namespace NPlot
 		{
 			for (int i=0; i<this.Count;	++i)
 			{
-                if (!(onlyInRegion &&
-                       (this[i].X >= region.X && this[i].X <= region.X + region.Width) &&
-                       (this[i].Y >= region.Y && this[i].Y <= region.Y + region.Height)))
-                {
-                    continue;
-                }
+				if ( !(onlyInRegion && 
+					   (this[i].X >= region.X && this[i].X <= region.X+region.Width) &&
+					   (this[i].Y >= region.Y && this[i].Y <= region.Y+region.Height)) )
+					continue;
 
 				sb.Append( this[i].ToString() );
 				sb.Append( "\r\n" );
 			}
 		}
+
+
 	}
 }

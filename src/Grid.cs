@@ -191,6 +191,7 @@ namespace NPlot
 		/// <param name="yAxis">The physical y axis to draw vertical lines parallel to.</param>
 		public void Draw( Graphics g, PhysicalAxis xAxis, PhysicalAxis yAxis )
 		{
+
 			ArrayList xLargePositions = null;
 			ArrayList yLargePositions = null;
 			ArrayList xSmallPositions = null;
@@ -208,6 +209,7 @@ namespace NPlot
 				DrawGridLines( g, yAxis, xAxis, yLargePositions, false, this.MajorGridPen );
 			}
 
+
 			if (this.horizontalGridType_ == GridType.Fine)
 			{
 				xAxis.Axis.WorldTickPositions_SecondPass( xAxis.PhysicalMin, xAxis.PhysicalMax, xLargePositions, ref xSmallPositions );
@@ -219,6 +221,8 @@ namespace NPlot
 				yAxis.Axis.WorldTickPositions_SecondPass( yAxis.PhysicalMin, yAxis.PhysicalMax, yLargePositions, ref ySmallPositions );
 				DrawGridLines( g, yAxis, xAxis, ySmallPositions, false, this.MinorGridPen );
 			}
+
 		}
+
 	}
 }

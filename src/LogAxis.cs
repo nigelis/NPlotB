@@ -36,7 +36,6 @@ using System.Text;
 
 namespace NPlot
 {
-
 	/// <summary>
 	/// The class implementing logarithmic axes.
 	/// </summary>
@@ -167,6 +166,7 @@ namespace NPlot
 					(int)((physicalMax.Y-physicalMin.Y)*dir.Y) );
 				bb = rr;
 			}
+			
 
 			// missed protection for zero ticks
 			if (smallTickPositions.Count > 0)
@@ -178,6 +178,7 @@ namespace NPlot
 					// ignore r for now - assume bb unchanged by small tick bounds.
 				}
 			}
+
 		}
 
 
@@ -287,13 +288,12 @@ namespace NPlot
 					}
 				}
 			}
-		}
 
+		}
 
 		private static double m_d5Log = -Math.Log10(0.5);   // .30103
 		private static double m_d5RegionPos = Math.Abs(m_d5Log + ((1 - m_d5Log) / 2)); //	   ' .6505
 		private static double m_d5RegionNeg = Math.Abs(m_d5Log / 2); //	   '.1505
-
 
 		private void CalcGrids( double dLenAxis, int nNumDivisions, ref double dDivisionInterval)
 		{
@@ -319,7 +319,6 @@ namespace NPlot
 			}
 		}
 
-
 		/// <summary>
 		/// Determines the positions, in world coordinates, of the log spaced large ticks. 
 		/// </summary>
@@ -334,6 +333,7 @@ namespace NPlot
 			out ArrayList smallTickPositions
 			)
 		{
+
 			smallTickPositions = null;
 			largeTickPositions = new ArrayList();
 
@@ -392,6 +392,7 @@ namespace NPlot
 				largeTickPositions.Add( val );
 				mark += roundTickDist;
 			}
+
 		}
 
 
@@ -593,6 +594,7 @@ namespace NPlot
 			}
 
 			return ret;
+
 		}
 
 
@@ -651,5 +653,6 @@ namespace NPlot
 				return false;
 			}
 		}
+
 	}
 }
